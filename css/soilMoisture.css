@@ -35,11 +35,7 @@
         font-weight: bold;
     }
 
-    .data-item h2 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+    
 
     .value {
         font-size: 24px;
@@ -53,4 +49,58 @@
         margin: 0 auto;
         background-color: rgba(255, 255, 255, 0.2);
         border-radius: 10px;
+    }
+
+    .skill{
+        width: 160px;
+        height: 160px;
+      
+        position: relative;
+    }
+    
+    .outer{
+        height: 160px;
+        width: 160px;
+        border-radius: 50%;
+        padding: 20px;
+        box-shadow: 6px 6px 10px -1px rgba(0, 0, 0 , 0.15),
+        -6px -6px 10px -1px rgb(255,255,255,0.7);
+    }
+    
+    .inner{
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+        inset -4px -4px 6px -1px rgba(255,255, 255 , 0.7),
+        -0.5px -0.5px 0px  rgba(255,255, 255 , 1),
+        0.5px 0.5px 0px  rgba(0,0, 0 , 0.15),
+        0px 12px 10px -10px rgba(0,0, 0 , 0.85);
+    }
+    #number{
+        font-weight: 600;
+        color: white;
+        font-size: 30px;
+    }
+    
+    circle{
+        fill: none;
+        stroke: url(#GradientColor);
+        stroke-width: 20px;
+        stroke-dasharray: 450;
+        stroke-dashoffset: 450;
+        animation: anim 2s linear forwards;
+    }
+    @keyframes anim{
+        100%{
+            stroke-dashoffset: 157.5;
+        }
+    }
+    svg{
+        position: absolute;
+        top: 0;
+        left: 0;
     }
