@@ -1,7 +1,8 @@
 //  -------- Firebase inbuilt functions --------
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
-// import '/firebase/database';\
-// test 7
+// import '/firebase/database';
 
 // Firebase Authenticator
 const firebaseConfig = {
@@ -12,13 +13,15 @@ const firebaseConfig = {
     storageBucket: "proje-70985.appspot.com",
     messagingSenderId: "253127593714",
     appId: "1:253127593714:web:c0dc1eb115fb8cb4064a6b"
-  };
+};
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 //invokes firebase authentication.
-const auth = firebase.auth();
+const auth = getAuth(app);
 // Initialize Firestore
-const db = firebase.firestore();
+// const db = firebase.firestore();
+
+
 
 // User loginstatus
 var loginStatus = false;
@@ -49,6 +52,10 @@ if (Page === "login") {
         } else {
             forgotPassword(email);
         }
+    });
+
+    document.querySelector("#GOOGLE").addEventListener("click", () => {
+        google_auth();
     });
 }
 if (Page === "registration") {
@@ -149,7 +156,11 @@ if (Page === "timePeriod") {
 let logout = document.querySelectorAll(".logout-button");
 for (let i = 0; i < logout.length; i++) {
     logout[i].addEventListener("click", () => {
-        signOut();
+        auth.signOut().then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+            // An error happened.
+        });
     });
 }
 // Want to - Sign up button
@@ -228,22 +239,14 @@ const login = () => {
 // ========================== Login --end ==========================
 
 // ========================== Signout ==========================
-const signOut = () => {
-    firebase
-        .auth()
-        .signOut()
-        .then(function () {
-            location.href = "./login.html";
-        })
-        .catch(function (error) {
-            alert("error signing out, check network connection");
-        });
+const logoutfunc = () => {
+
 };
+
 // ========================== Signout --end ==========================
 
 // ========================== Authentication ==========================
 const authenticate = (email, password) => {
-    const auth = firebase.auth();
     auth.signInWithEmailAndPassword(email, password)
         .then(function (userCredential) {
             console.log("Login successful:", userCredential);
@@ -259,6 +262,29 @@ const authenticate = (email, password) => {
             if (errorMessage === "Firebase: Error (auth/invalid-login-credentials).") {
                 location.href = "./registration.html";
             }
+        });
+};
+
+const provider = new GoogleAuthProvider();
+const google_auth = () => {
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            window.location.href = "./deviceRegistration.html"
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
         });
 };
 // ========================== Authentication --end ==========================
@@ -277,9 +303,9 @@ const forgotPassword = (email) => {
 // ========================== Forgot Password -- send reset_pass-email --end ==========================
 
 // ========================== successfull - Login ==========================
-auth.onAuthStateChanged((firebaseUser) => {
-    if (firebaseUser) {
-        console.log("User is signed in:", firebaseUser); // logging if user is authenticated
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("User is signed in:", user); // logging if user is authenticated
         loginStatus = true;  // setting login status to true 
         fetch__details();
 
@@ -303,8 +329,11 @@ auth.onAuthStateChanged((firebaseUser) => {
                 });
             });
         });
-    }
-    else {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        // ...
+    } else {
         console.log("User is not signed in.");  // logging if user is not authenticated
         loginStatus = false;
 
@@ -332,15 +361,16 @@ auth.onAuthStateChanged((firebaseUser) => {
         });
     }
     toggleLoginLogout();
+
 });
 // ========================== successfull - Login --end ==========================
 
 
 
+
+
+
 //  ========================== Firebase inbuilt functions --end ==========================
-
-
-
 
 
 
@@ -372,137 +402,88 @@ function toggleLoginLogout() {
 }
 // ========================== Toggle login/logout button --end ==========================
 
-// ========================== Input box background toggle ==========================
-function checkInput() {
-    // registration form
-    if (Page === "registration") {
-        ["registration-email", "registration-reemail", "registration-password"].forEach(id => {
-            const editElement = document.getElementById(`${id}`);
-            if (editElement.value !== "") {
-                editElement.classList.add("input-active");
-            }
-            else {
-                editElement.classList.remove("input-active");
-            }
-        });
-    }
-    // login form
-    else if (Page === "login") {
-        ["login-email", "login-password"].forEach(id => {
-            const editElement = document.getElementById(`${id}`);
-            if (editElement.value !== "") {
-                editElement.classList.add("input-active");
-            }
-            else {
-                editElement.classList.remove("input-active");
-            }
-        });
-    }
-    // device registration form
-    else if (Page === "deviceRegistration") {
-        ["device-id", "crop-state", "crop-type", "username"].forEach(id => {
-            const editElement = document.getElementById(`${id}`);
-            if (editElement.value !== "") {
-                editElement.classList.add("input-active");
-            }
-            else {
-                editElement.classList.remove("input-active");
-            }
-        });
-    }
-    // Edit profile form
-    else if (Page === "editDevice") {
-        ["device-id-edit", "crop-state-edit", "crop-type-edit", "username-edit"].forEach(id => {
-            const editElement = document.getElementById(`${id}`);
-            if (editElement.value !== "") {
-                editElement.classList.add("input-active");
-            }
-            else {
-                editElement.classList.remove("input-active");
-            }
-        });
-    }
-}
-// ========================== Input box background toggle --end ==========================
+
+
+
 
 
 
 // !!IMPORTANT  Fetching details from firebase server and fullfilling requirenments of all pages  !!IMPORTANT
 function fetch__details() {
-    const user = firebase.auth().currentUser;
-    console.log("inside1");
+    // const user = firebase.auth().currentUser;
+    // console.log("inside1");
 
-    if (user) {
-        // User is signed in, get a reference to the user's document in Firestore
-        const userDocRef = db.collection("users").doc(user.uid);
+    // if (user) {
+    //     // User is signed in, get a reference to the user's document in Firestore
+    //     const userDocRef = db.collection("users").doc(user.uid);
 
-        // Get the user's document
-        userDocRef.get().then((doc) => {
-            if (doc.exists) {
-                // The document exists, you can read its data
-                const data = doc.data();
+    //     // Get the user's document
+    //     userDocRef.get().then((doc) => {
+    //         if (doc.exists) {
+    //             // The document exists, you can read its data
+    //             const data = doc.data();
 
-                var deviceID = data.deviceID || '';
-                var area = data.area || '';
-                var cropState = data.cropState || '';
-                var cropType = data.cropType || '';
-                var username = data.username || '';
+    //             var deviceID = data.deviceID || '';
+    //             var area = data.area || '';
+    //             var cropState = data.cropState || '';
+    //             var cropType = data.cropType || '';
+    //             var username = data.username || '';
 
-                // ==== Edit-profile-page Display existing values ====
-                if (Page === "deviceRegistration") {
-                    // Display the data in the form -- Populate Form
-                    document.querySelector("#device-id").value = deviceID;
-                    document.querySelector("#area").value = area;
-                    document.querySelector("#crop-state").value = cropState;
-                    document.querySelector("#crop-type").value = cropType;
-                    document.querySelector("#username").value = username;
-                    checkInput();
-                }
-                // ==== Edit-profile-page Display existing values --end ====
+    //             // ==== Edit-profile-page Display existing values ====
+    //             if (Page === "deviceRegistration") {
+    //                 // Display the data in the form -- Populate Form
+    //                 document.querySelector("#device-id").value = deviceID;
+    //                 document.querySelector("#area").value = area;
+    //                 document.querySelector("#crop-state").value = cropState;
+    //                 document.querySelector("#crop-type").value = cropType;
+    //                 document.querySelector("#username").value = username;
+    //                 checkInput();
+    //             }
+    //             // ==== Edit-profile-page Display existing values --end ====
 
-                // ==== climate_condition_page ====
-                if (Page === "climateCondition") {
-                    const city = ["Jodhpur", "Rajsamand", "Udaipur"];
-                    let areaValue;
-                    if (area === "Area A") {
-                        areaValue = city[0];
-                    } else if (area === "Area B") {
-                        areaValue = city[1];
-                    } else if (area === "Area C") {
-                        areaValue = city[2];
-                    } else {
-                        console.log("Out of Bound");
-                    }
-                    searchByCityName(areaValue);
-                }
-                // ==== climate_condition_page --end ====
+    //             // ==== climate_condition_page ====
+    //             if (Page === "climateCondition") {
+    //                 const city = ["Jodhpur", "Rajsamand", "Udaipur"];
+    //                 let areaValue;
+    //                 if (area === "Area A") {
+    //                     areaValue = city[0];
+    //                 } else if (area === "Area B") {
+    //                     areaValue = city[1];
+    //                 } else if (area === "Area C") {
+    //                     areaValue = city[2];
+    //                 } else {
+    //                     console.log("Out of Bound");
+    //                 }
+    //                 searchByCityName(areaValue);
+    //             }
+    //             // ==== climate_condition_page --end ====
 
-                // ==== Crop Type page ====
-                if (Page === "cropType") {
-                    console.log("inside 2");
-                    console.log(cropType);
-                    if (cropType.toLowerCase() === "wheat") {
-                        document.querySelector(".wheat").classList.remove("hide");
-                    } else if (cropType.toLowerCase() === "maize") {
-                        document.querySelector(".maize").classList.remove("hide");
-                    } else {
-                        document.querySelector(".wheat").classList.add("hide");
-                        document.querySelector(".maize").classList.add("hide");
-                    }
-                }
-                // ==== Crop Type page --end ====
+    //             // ==== Crop Type page ====
+    //             if (Page === "cropType") {
+    //                 console.log("inside 2");
+    //                 console.log(cropType);
+    //                 if (cropType.toLowerCase() === "wheat") {
+    //                     document.querySelector(".wheat").classList.remove("hide");
+    //                 } else if (cropType.toLowerCase() === "maize") {
+    //                     document.querySelector(".maize").classList.remove("hide");
+    //                 } else {
+    //                     document.querySelector(".wheat").classList.add("hide");
+    //                     document.querySelector(".maize").classList.add("hide");
+    //                 }
+    //             }
+    //             // ==== Crop Type page --end ====
 
-            } else {
-                // The document does not exist
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-    } else {
-        // No user is signed in.
-        console.log("User not authenticated. Please sign in.");
-    }
+    //         } else {
+    //             // The document does not exist
+    //             console.log("No such document!");
+    //         }
+    //     }).catch((error) => {
+    //         console.log("Error getting document:", error);
+    //     });
+    // } else {
+    //     // No user is signed in.
+    //     console.log("User not authenticated. Please sign in.");
+    // }
 }
 // !!IMPORTANT  --end  !!IMPORTANT
 
