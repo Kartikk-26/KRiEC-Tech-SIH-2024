@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="./css/styles.css">
+    <link type="text/css" rel="stylesheet" href="./css/cropType.css">
+    <title>KriEC Tech</title>
+</head>
+
+<body>
+    <header class="headerArea">
+        <div class="mainMenu">
+            <!-- navbar -->
+            <nav class="navbar navbar-dark bg-dark fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">KriEC Tech</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                        aria-labelledby="offcanvasDarkNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link home-page-call" aria-current="page">Home</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Services
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item soil-moisture-call">Soil moisture</a></li>
+                                        <li><a class="dropdown-item climate-condition-call">Climate condition</a></li>
+                                        <li><a class="dropdown-item water-use-call">Water use</a></li>
+                                        <li><a class="dropdown-item crop-stge-call">Crop stage</a></li>
+                                        <li><a class="dropdown-item time-period-call">Time period</a></li>
+                                        <li><a class="dropdown-item dropdown-active crop-type-call">Crop type</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item edit-device-details-call">Edit Device Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link about-us-call">About us</a>
+                                </li>
+                                <hr>
+
+                                <li class="nav-item">
+                                    <a class="nav-link login-form-call" aria-current="page">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link registration-form-call" aria-current="page">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link logout-button" aria-current="page">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- navbar ends here -->
+        </div>
+    </header>
+
+    <div class="bg-img">
+        <div class="crop-stage-container">
+            <div class="maize hide">
+                <p>Maize is rich in carbohydrates, making it a valuable energy.<br>
+                    Farmers cultivate maize for its versatile use in human and animal nutrition.<br>
+                    This crop thrives in diverse climate, from tropical to temperate regions.<br>
+                    The seeds are processed and converted into needed preparations, flakes, grits, and pops for human
+                    consumption.<br>
+                    Yellow maize is one of the richest sources of Vitamin-A.<br>
+                    Maize oil is widely used as a cooking medium and for the manufacturing of hydrogenated oil. The oil
+                    has
+                    the quality of reducing cholesterol in the human blood, similar to sunflower oil.<br>
+                </p>
+        
+                <table>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Soil Moisture Required</th>
+        
+                    </tr>
+                    <tr>
+                        <td>Initial Stage(1 Month)</td>
+                        <td>50-60%</td>
+        
+                    </tr>
+                    <tr>
+                        <td>Development Stage(1 Month)</td>
+                        <td>80-90%</td>
+        
+                    </tr>
+                    <tr>
+                        <td>Mid Season Stage(1 Month)</td>
+                        <td>40-50%</td>
+        
+                    </tr>
+                    <tr>
+                        <td>Late Stage(1 Month)</td>
+                        <td>10-20%</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="wheat hide">
+                <p>Wheat is an important source of carbohydrates.<br>
+                    Globally, it is the leading source of vegetable proteins in human food, having a protein content of
+                    about
+                    13%, which is relatively high compared to other major cereals but relatively low in protein
+                    quality.<br>
+                    When eaten as the whole grain, wheat is a source of multiple nutrients and dietary fiber. <br>
+                    In a small part of the general population, gluten – which comprises most of the protein in wheat –
+                    can
+                    trigger coeliac disease, noncoeliac gluten sensitivity, gluten ataxia, and dermatitis herpetiformis.
+                </p>
+        
+                <table>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Soil Moisture Required</th>
+        
+                    </tr>
+                    <tr>
+                        <td>Initial Stage(1 Month)</td>
+                        <td>50-60%</td>
+        
+                    </tr>
+                    <tr>
+                        <td>Development Stage(1 Month)</td>
+                        <td>80-90%</td>
+        
+                    </tr>
+                    <tr>
+                        <td>Mid Season Stage(1 Month)</td>
+                        <td>40-50%</td>
+        
+                    </tr>
+                    <tr>
+                        <td>Late Stage(1 Month)</td>
+                        <td>10-20%</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="nothing">
+                <p>Please complete Your profile!</p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- firebaseAuth -->
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+    <!-- firebaseAuth ends here -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="./js/firebaseAuth.js"></script>
+</body>
+
+</html>

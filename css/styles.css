@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primary: #6c63ff;
+    --color-success: #00bf8e;
+    --color-warning: #f7c94b;
+    --color-danger: #f74852;
+    --color-danger-variant: rgba(247, 88, 66, 0.4);
+    --color-white: #fff;
+    --color-light: rgba(255, 255, 255, 0.7);
+    --color-black: #000;
+    --color-bg: #1f2641;
+    --color-bg1: #2e3267;
+    --color-bg2: #424890;
+    --color-nav: red;
+
+    --container-width-lg: 80%;
+    --container-width-md: 90%;
+    --container-width-sm: 94%;
+
+    --transition: all 400ms ease;
+
+    --delay-time: 0.2s;
+}
+
+/* Styles for the card container */
+.container {
+    width: var(--container-width-lg);
+    margin: 0 auto;
+}
+
+.homepage__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 5rem;
+    height: 100%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+/* Styles for the body container */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    color: var(--color-white);
+    background-color: var(--color-bg);
+}
+
+
+
+/* Styles for each card */
+.card {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: auto;
+    gap: 1rem;
+    background-color: transparent;
+    border: none;
+}
+
+/* Styles for the buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    padding: 1rem 2rem;
+    border: 1px solid transparent;
+    font-weight: 500;
+    transition: var(--transition);
+    border-radius: 0.3rem;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.btn-primary {
+    background-color: var(--color-danger);
+    color: var(--color-white);
+}
+
+/* Styles for the card images */
+.card img {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+}
+
+.card .btn {
+    border-radius: 1rem;
+    font-weight: bolder;
+    font-size: medium;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hide {
+    display: none;
+}
+
+.dropdown-active {
+    color: #00FFFF;
+}

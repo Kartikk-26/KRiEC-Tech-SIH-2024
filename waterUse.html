@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="./css/styles.css">
+    <link type="text/css" rel="stylesheet" href="./css/waterUse.css">
+    <title>KriEC Tech</title>
+</head>
+
+<body>
+    <header class="headerArea">
+        <div class="mainMenu">
+            <!-- navbar -->
+            <nav class="navbar navbar-dark bg-dark fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">KriEC Tech</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                        aria-labelledby="offcanvasDarkNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <a class="nav-link home-page-call" aria-current="page">Home</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Services
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li><a class="dropdown-item soil-moisture-call">Soil moisture</a></li>
+                                        <li><a class="dropdown-item climate-condition-call">Climate condition</a></li>
+                                        <li><a class="dropdown-item dropdown-active water-use-call">Water use</a></li>
+                                        <li><a class="dropdown-item crop-stge-call">Crop stage</a></li>
+                                        <li><a class="dropdown-item time-period-call">Time period</a></li>
+                                        <li><a class="dropdown-item crop-type-call">Crop type</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item edit-device-details-call">Edit Device Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link about-us-call">About us</a>
+                                </li>
+                                <hr>
+
+                                <li class="nav-item">
+                                    <a class="nav-link login-form-call" aria-current="page">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link registration-form-call" aria-current="page">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link logout-button" aria-current="page">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- navbar ends here -->
+        </div>
+    </header>
+
+    <div class="bg-img">
+        <!-- Your Code Here... -->
+    </div>
+
+    </div>
+
+    <!-- firebaseAuth -->
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+    <!-- firebaseAuth ends here -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="./js/firebaseAuth.js"></script>
+</body>
+
+</html>

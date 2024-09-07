@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+    border-collapse: unset;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+th {
+    background-color: #008000;
+    color: #F5F5DC;
+}
+
+tr {
+    background-color: #9ACD32;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.crop-stage-container {
+    width: 350px 100% 900px;
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #008B8B;
+}

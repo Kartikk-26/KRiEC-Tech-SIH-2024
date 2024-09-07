@@ -1,0 +1,86 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    /* box-sizing: content-box; */
+}
+
+select {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    height: 100%;
+}
+
+.__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    width: 30%;
+    margin-top: 1.15rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.__form h3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 1.2rem;
+}
+
+.__form input {
+    border: none;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 0;
+}
+
+.__form button {
+    margin-top: 1rem;
+}
+
+#forgot-password {
+    text-align: right;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: -1.9rem;
+    margin-right: 5px;
+}
+
+#forgot-password:hover {
+    opacity: 0.7;
+}
+
+input {
+    background: transparent;
+    border: 2px solid #e8f8ff !important;
+    /* Adjust border color and width here */
+}
+
+.input-active {
+    background-color: #f9f9f9;
+    /* Define the background color you want when text is entered */
+}
