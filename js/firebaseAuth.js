@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/fireba
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
 // import '/firebase/database';
-// prototype
+
 // Firebase Authenticator
 const firebaseConfig = {
     apiKey: "AIzaSyBj94MToUIYOeYleMbqFdiuF4T90qBZE14",
