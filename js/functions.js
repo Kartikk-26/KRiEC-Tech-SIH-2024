@@ -1,7 +1,5 @@
 var Page = window.location.pathname.split("/").pop().split(".")[0];
 
-
-
 // ========================== Input box background toggle ==========================
 function checkInput() {
     // registration form
