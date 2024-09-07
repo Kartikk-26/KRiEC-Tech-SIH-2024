@@ -1,7 +1,8 @@
 //  -------- Firebase inbuilt functions --------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 // import '/firebase/database';
 
@@ -19,8 +20,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //invokes firebase authentication.
 const auth = getAuth(app);
-const user = auth.currentUser;
-// Initialize Firestore
+let user;
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 // const db = firebase.firestore();
 
 
@@ -63,7 +66,7 @@ if (Page === "login") {
 if (Page === "registration") {
 
     // Sign up button
-    document.querySelector("#register").addEventListener("keyup", (e) => {
+    document.querySelector("#register").addEventListener("click", (e) => {
         Signup();
     });
     //register when you hit the enter key
@@ -208,8 +211,7 @@ const Signup = () => {
     } else if (pass != repass) {
         alert("Password does not match");
     } else {
-        auth
-            .createUserWithEmailAndPassword(email, pass)
+        createUserWithEmailAndPassword(auth, email, pass)
             .then(function (userCredential) {
                 console.log("Registration successful:", userCredential);
                 window.location.href = "./deviceRegistration.html"
@@ -219,7 +221,29 @@ const Signup = () => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.error("Registration error:", errorCode, errorMessage);
-                alert(errorMessage);
+                if (errorMessage === "Firebase: Error (auth/email-already-in-use).") {
+                    signInWithEmailAndPassword(auth, email, pass)
+                        .then((userCredential) => {
+                            console.log("Login successful:", userCredential);
+                            fetch__details();
+                            loginStatus = true;
+                            alert("Account already exists.");
+                            window.location.href = "./index.html";
+                        })
+                        .catch((error) => {
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            console.error("Login error:", errorCode, errorMessage);
+
+                            alert(errorMessage);
+                            if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
+                                alert("Account already exists. Please login with correct password.");
+                                location.href = "./login.html";
+                            }
+                        });
+                } else {
+                    alert(errorMessage);
+                }
             });
     }
 };
@@ -240,14 +264,16 @@ const login = () => {
                 console.log("Login successful:", userCredential);
                 fetch__details();
                 loginStatus = true;
+                user = auth.currentUser;
                 window.location.href = "./index.html";
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.error("Login error:", errorCode, errorMessage);
+
                 alert(errorMessage);
-                if (errorMessage === "Firebase: Error (auth/invalid-login-credentials).") {
+                if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
                     location.href = "./registration.html";
                 }
             });
@@ -256,10 +282,6 @@ const login = () => {
 // ========================== Login --end ==========================
 
 // ========================== Authentication ==========================
-const authenticate = (email, password) => {
-
-};
-
 const provider = new GoogleAuthProvider();
 const google_auth = () => {
     signInWithPopup(auth, provider)
@@ -405,6 +427,7 @@ function toggleLoginLogout() {
 
 // !!IMPORTANT  Fetching details from firebase server and fullfilling requirenments of all pages  !!IMPORTANT
 function fetch__details() {
+    console.log("user : ", user);
     if (user !== null) {
         // The user object has basic properties such as display name, email, etc.
         const deviceID = user.deviceID;
@@ -481,6 +504,7 @@ function fetch__details() {
 // ========================== Devicde rehistration form ==========================
 function deviceRegistration() {
     try {
+        console.log("user : ", user);
         const deviceID = document.querySelector("#device-id").value;
         const area = document.querySelector("#area").value;
         const cropState = document.querySelector("#crop-state").value;
