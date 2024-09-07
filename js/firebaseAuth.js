@@ -1,6 +1,7 @@
 //  -------- Firebase inbuilt functions --------
 
-// import '/firebase/database';
+// import '/firebase/database';\
+// test 7
 
 // Firebase Authenticator
 const firebaseConfig = {
