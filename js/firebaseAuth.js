@@ -1,6 +1,7 @@
 //  -------- Firebase inbuilt functions --------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
 // import '/firebase/database';
 
@@ -18,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //invokes firebase authentication.
 const auth = getAuth(app);
+const user = auth.currentUser;
 // Initialize Firestore
 // const db = firebase.firestore();
 
@@ -62,13 +64,13 @@ if (Page === "registration") {
 
     // Sign up button
     document.querySelector("#register").addEventListener("keyup", (e) => {
-        register();
+        Signup();
     });
     //register when you hit the enter key
-    document.querySelector("#registration-password").addEventListener("keyup", (e) => {
+    document.querySelector("#registration-repass").addEventListener("keyup", (e) => {
         if (event.keyCode === 13) {
             e.preventDefault();
-            register();
+            Signup();
         }
     });
 }
@@ -194,20 +196,20 @@ for (let i = 0; i < homeCall.length; i++) {
 
 
 // ========================== Registration ==========================
-const register = () => {
+const Signup = () => {
     const email = document.querySelector("#registration-email").value;
-    const reemail = document.querySelector("#registration-reemail").value;
-    const password = document.querySelector("#registration-password").value;
+    const pass = document.querySelector("#registration-pass").value;
+    const repass = document.querySelector("#registration-repass").value;
 
     if (email.trim() == "") {
         alert("Enter Email");
-    } else if (password.trim().length < 7) {
+    } else if (pass.trim().length < 7) {
         alert("Password must be at least 7 characters");
-    } else if (email != reemail) {
-        alert("emails do not match");
+    } else if (pass != repass) {
+        alert("Password does not match");
     } else {
         auth
-            .createUserWithEmailAndPassword(email, password)
+            .createUserWithEmailAndPassword(email, pass)
             .then(function (userCredential) {
                 console.log("Registration successful:", userCredential);
                 window.location.href = "./deviceRegistration.html"
@@ -233,36 +235,29 @@ const login = () => {
     } else if (password.trim() == "") {
         alert("Enter Password");
     } else {
-        authenticate(email, password);
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log("Login successful:", userCredential);
+                fetch__details();
+                loginStatus = true;
+                window.location.href = "./index.html";
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.error("Login error:", errorCode, errorMessage);
+                alert(errorMessage);
+                if (errorMessage === "Firebase: Error (auth/invalid-login-credentials).") {
+                    location.href = "./registration.html";
+                }
+            });
     }
 };
 // ========================== Login --end ==========================
 
-// ========================== Signout ==========================
-const logoutfunc = () => {
-
-};
-
-// ========================== Signout --end ==========================
-
 // ========================== Authentication ==========================
 const authenticate = (email, password) => {
-    auth.signInWithEmailAndPassword(email, password)
-        .then(function (userCredential) {
-            console.log("Login successful:", userCredential);
-            fetch__details();
-            loginStatus = true;
-            window.location.href = "./index.html";
-        })
-        .catch(function (error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.error("Login error:", errorCode, errorMessage);
-            alert(errorMessage);
-            if (errorMessage === "Firebase: Error (auth/invalid-login-credentials).") {
-                location.href = "./registration.html";
-            }
-        });
+
 };
 
 const provider = new GoogleAuthProvider();
@@ -410,77 +405,72 @@ function toggleLoginLogout() {
 
 // !!IMPORTANT  Fetching details from firebase server and fullfilling requirenments of all pages  !!IMPORTANT
 function fetch__details() {
-    // const user = firebase.auth().currentUser;
-    // console.log("inside1");
+    if (user !== null) {
+        // The user object has basic properties such as display name, email, etc.
+        const deviceID = user.deviceID;
+        const area = user.area;
+        const cropState = user.cropState;
+        const cropType = user.cropType;
+        const username = user.username;
 
-    // if (user) {
-    //     // User is signed in, get a reference to the user's document in Firestore
-    //     const userDocRef = db.collection("users").doc(user.uid);
+        // The user's ID, unique to the Firebase project. Do NOT use
+        // this value to authenticate with your backend server, if
+        // you have one. Use User.getIdToken() instead.
+        const uid = user.uid;
+        console.log("User ID : ", uid);
 
-    //     // Get the user's document
-    //     userDocRef.get().then((doc) => {
-    //         if (doc.exists) {
-    //             // The document exists, you can read its data
-    //             const data = doc.data();
+        // ==== Edit-profile-page Display existing values ====
+        if (Page === "deviceRegistration") {
+            // Display the data in the form -- Populate Form
+            document.querySelector("#device-id").value = deviceID;
+            document.querySelector("#area").value = area;
+            document.querySelector("#crop-state").value = cropState;
+            document.querySelector("#crop-type").value = cropType;
+            document.querySelector("#username").value = username;
+            checkInput();
+        }
+        // ==== Edit-profile-page Display existing values --end ====
 
-    //             var deviceID = data.deviceID || '';
-    //             var area = data.area || '';
-    //             var cropState = data.cropState || '';
-    //             var cropType = data.cropType || '';
-    //             var username = data.username || '';
+        // ==== climate_condition_page ====
+        if (Page === "climateCondition") {
+            const city = ["Jodhpur", "Rajsamand", "Udaipur"];
+            let areaValue;
+            if (area === "Area A") {
+                areaValue = city[0];
+            } else if (area === "Area B") {
+                areaValue = city[1];
+            } else if (area === "Area C") {
+                areaValue = city[2];
+            } else {
+                console.log("Out of Bound");
+            }
+            searchByCityName(areaValue);
+        }
+        // ==== climate_condition_page --end ====
 
-    //             // ==== Edit-profile-page Display existing values ====
-    //             if (Page === "deviceRegistration") {
-    //                 // Display the data in the form -- Populate Form
-    //                 document.querySelector("#device-id").value = deviceID;
-    //                 document.querySelector("#area").value = area;
-    //                 document.querySelector("#crop-state").value = cropState;
-    //                 document.querySelector("#crop-type").value = cropType;
-    //                 document.querySelector("#username").value = username;
-    //                 checkInput();
-    //             }
-    //             // ==== Edit-profile-page Display existing values --end ====
+        // ==== Crop Type page ====
+        if (Page === "cropType") {
+            console.log("inside 2");
+            console.log(cropType);
+            if (cropType.toLowerCase() === "wheat") {
+                document.querySelector(".wheat").classList.remove("hide");
+            } else if (cropType.toLowerCase() === "maize") {
+                document.querySelector(".maize").classList.remove("hide");
+            } else {
+                document.querySelector(".wheat").classList.add("hide");
+                document.querySelector(".maize").classList.add("hide");
+            }
+        }
+        // ==== Crop Type page --end ====
 
-    //             // ==== climate_condition_page ====
-    //             if (Page === "climateCondition") {
-    //                 const city = ["Jodhpur", "Rajsamand", "Udaipur"];
-    //                 let areaValue;
-    //                 if (area === "Area A") {
-    //                     areaValue = city[0];
-    //                 } else if (area === "Area B") {
-    //                     areaValue = city[1];
-    //                 } else if (area === "Area C") {
-    //                     areaValue = city[2];
-    //                 } else {
-    //                     console.log("Out of Bound");
-    //                 }
-    //                 searchByCityName(areaValue);
-    //             }
-    //             // ==== climate_condition_page --end ====
-
-    //             // ==== Crop Type page ====
-    //             if (Page === "cropType") {
-    //                 console.log("inside 2");
-    //                 console.log(cropType);
-    //                 if (cropType.toLowerCase() === "wheat") {
-    //                     document.querySelector(".wheat").classList.remove("hide");
-    //                 } else if (cropType.toLowerCase() === "maize") {
-    //                     document.querySelector(".maize").classList.remove("hide");
-    //                 } else {
-    //                     document.querySelector(".wheat").classList.add("hide");
-    //                     document.querySelector(".maize").classList.add("hide");
-    //                 }
-    //             }
-    //             // ==== Crop Type page --end ====
-
-    //         } else {
-    //             // The document does not exist
-    //             console.log("No such document!");
-    //         }
-    //     }).catch((error) => {
-    //         console.log("Error getting document:", error);
-    //     });
-    // } else {
+    } else {
+        // The document does not exist
+        console.log("No such document!");
+    }
+    // }).catch ((error) => {
+    //     console.log("Error getting document:", error);
+    // });
+    //     } else {
     //     // No user is signed in.
     //     console.log("User not authenticated. Please sign in.");
     // }
@@ -501,7 +491,7 @@ function deviceRegistration() {
             throw new Error("All fields are required");
         }
 
-        const user = firebase.auth().currentUser;
+
 
         if (!user) {
             throw new Error("User not authenticated. Please sign in.");
