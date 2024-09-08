@@ -11,6 +11,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
+    
     }
 
     .data-item {
@@ -19,6 +20,7 @@
         padding: 20px;
         background-color: rgba(255, 255, 255, 0.2);
         border-radius: 10px;
+        height: 370px;
     }
 
     .soilMoisture__container {
@@ -54,7 +56,7 @@
     .skill{
         width: 160px;
         height: 160px;
-      
+        
         position: relative;
     }
     
