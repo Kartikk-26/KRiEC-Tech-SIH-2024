@@ -4,7 +4,7 @@ var Page = window.location.pathname.split("/").pop().split(".")[0];
 function checkInput() {
     // registration form
     if (Page === "registration") {
-        ["registration-email", "registration-reemail", "registration-password"].forEach(id => {
+        ["registration-email", "registration-pass", "registration-repass"].forEach(id => {
             const editElement = document.getElementById(`${id}`);
             if (editElement.value !== "") {
                 editElement.classList.add("input-active");
@@ -28,7 +28,7 @@ function checkInput() {
     }
     // device registration form
     else if (Page === "deviceRegistration") {
-        ["device-id", "crop-state", "crop-type", "username"].forEach(id => {
+        ["mac-id"].forEach(id => {
             const editElement = document.getElementById(`${id}`);
             if (editElement.value !== "") {
                 editElement.classList.add("input-active");

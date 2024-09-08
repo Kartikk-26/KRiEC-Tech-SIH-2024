@@ -1,13 +1,10 @@
 const container = document.querySelector(".container1");
-const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
 
-search.addEventListener("click", () => {
+function ClimateCondition(city) {
     const APIKey = "92e4e88e94b0469aa0a7c6648d04d088";
-
-    const city = "udaipur"
 
     if (city == "") {
         return;
@@ -79,17 +76,17 @@ search.addEventListener("click", () => {
             humidity.innerHTML = `${json.main.humidity}%`;
             wind.innerHTML = `${parseInt(json.wind.speed)}km/h`;
         });
-});
+}
 
 //Get Reference to our Elements
-let number = document.getElementById('number');
-let counter =0;
+// let number = document.getElementById('number');
+// let counter =0;
 
-setInterval(()=>{
-    if (counter == 65) {
-        clearInterval;
-    }else{
-        counter +=1;
-        number.innerHTML =  `${counter}%`; 
-    }
-},30)
+// setInterval(()=>{
+//     if (counter == 65) {
+//         clearInterval;
+//     }else{
+//         counter +=1;
+//         number.innerHTML =  `${counter}%`; 
+//     }
+// },30)
