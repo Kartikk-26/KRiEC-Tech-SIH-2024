@@ -84,20 +84,26 @@
     <div class="container form__container">
         <div id="device-registration-page" class="__form">
             <h3>Device Registration</h3>
-            <label>Device ID</label>
-            <input type="text" id="device-id" onkeyup="checkInput()" /><br />
+            <label>Mac ID</label>
+            <input type="text" id="mac-id" onkeyup="checkInput()" /><br />
             <label>Area</label>
             <select id="area">
-                <option value="Area A">JODHPUR</option>
-                <option value="Area B">RAJSAMAND</option>
-                <option value="Area C">UDAIPUR</option>
+                <option value="UDAIPUR">UDAIPUR</option>
+                <option value="JODHPUR">JODHPUR</option>
+                <option value="RAJSAMAND">RAJSAMAND</option>
             </select><br />
-            <label>Crop State</label>
-            <input type="text" id="crop-state" onkeyup="checkInput()" /><br />
             <label>Crop Type</label>
-            <input type="text" id="crop-type" onkeyup="checkInput()" /><br />
-            <label>Username</label>
-            <input type="text" id="username" onkeyup="checkInput()" /><br />
+            <select id="crop-type">
+                <option value="wheat">Wheat</option>
+                <option value="maize">Maize</option>
+            </select><br />
+            <label>Crop Stage</label>
+            <select id="crop-stage">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select><br />
             <center><button class="btn" id="device-registration">Confirm</button></center>
         </div>
         <!-- Device Registration Form --end -->

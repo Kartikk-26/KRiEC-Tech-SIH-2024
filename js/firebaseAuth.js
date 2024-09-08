@@ -81,7 +81,7 @@ if (Page === "deviceRegistration") {
     document.querySelector("#device-registration").addEventListener("click", () => {
         deviceRegistration();
     });
-    document.addEventListener("keyup", (e) => {
+    document.querySelector("#device-registration-page").addEventListener("keyup", (e) => {
         if (event.keyCode === 13) {
             e.preventDefault();
             deviceRegistration();
@@ -430,56 +430,32 @@ function toggleLoginLogout() {
 
 // !!IMPORTANT  Fetching details from firebase server and fullfilling requirenments of all pages  !!IMPORTANT
 async function fetch__details() {
-    const docRef = doc(db, "Email", "MacId", "Area", "CropType");
+    const docRef = doc(db, "users", email);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        console.log("--> ", docSnap.data().MacId);
     } else {
         // docSnap.data() will be undefined in this case
         console.log("No such document!");
     }
-    // if (user !== null) {
-    //     // The user object has basic properties such as display name, email, etc.
-    //     const deviceID = user.deviceID;
-    //     const area = user.area;
-    //     const cropState = user.cropState;
-    //     const cropType = user.cropType;
-    //     const username = user.username;
-
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getIdToken() instead.
-    // const uid = user.uid;
-    // console.log("User ID : ", uid);
 
     // ==== Edit-profile-page Display existing values ====
-    // if (Page === "deviceRegistration") {
-    //     // Display the data in the form -- Populate Form
-    //     document.querySelector("#device-id").value = deviceID;
-    //     document.querySelector("#area").value = area;
-    //     document.querySelector("#crop-state").value = cropState;
-    //     document.querySelector("#crop-type").value = cropType;
-    //     document.querySelector("#username").value = username;
-    //     checkInput();
-    // }
+    if (Page === "deviceRegistration") {
+        // Display the data in the form -- Populate Form
+        document.querySelector("#mac-id").value = docSnap.data().MacId;
+        document.querySelector("#area").value = docSnap.data().Area;
+        document.querySelector("#crop-stage").value = docSnap.data().CropStage;
+        document.querySelector("#crop-type").value = docSnap.data().CropType;
+        checkInput();
+    }
     // ==== Edit-profile-page Display existing values --end ====
 
     // ==== climate_condition_page ====
-    // if (Page === "climateCondition") {
-    //     const city = ["Jodhpur", "Rajsamand", "Udaipur"];
-    //     let areaValue;
-    //     if (area === "Area A") {
-    //         areaValue = city[0];
-    //     } else if (area === "Area B") {
-    //         areaValue = city[1];
-    //     } else if (area === "Area C") {
-    //         areaValue = city[2];
-    //     } else {
-    //         console.log("Out of Bound");
-    //     }
-    //     searchByCityName(areaValue);
-    // }
+    if (Page === "climateCondition") {
+        ClimateCondition(docSnap.data().Area);
+    }
     // ==== climate_condition_page --end ====
 
     // ==== Crop Type page ====
@@ -502,27 +478,28 @@ async function fetch__details() {
 
 // ========================== Devicde rehistration form ==========================
 async function deviceRegistration() {
-    try {
-        const macId = document.querySelector("#device-id").value;
-        const area = document.querySelector("#area").value;
-        const cropType = document.querySelector("#crop-type").value;
+    const macId = document.querySelector("#mac-id").value;
+    const area = document.querySelector("#area").value;
+    const cropType = document.querySelector("#crop-type").value;
+    const cropStage = document.querySelector("#crop-stage").value;
 
-        if (macId.trim() == "" || cropType.trim() == "") {
-            throw new Error("All fields are required");
-        }
-
+    if (macId.trim() == "") {
+        alert("All fields are required");
+    } else {
         const userDocRef = doc(db, "users", email);
         await setDoc(userDocRef, {
             MacId: macId,
             Area: area,
-            CropState: CropState,
-            CropType: cropType,
+            CropStage: cropStage,
+            CropType: cropType
+        }).then(() => {
+            console.log("Document successfully written!");
+            alert("Device registered successfully.");
+            window.location.href = "./index.html";
+        }).catch((error) => {
+            console.error("Error writing document: ", error);
         });
     }
-    catch (error) {
-        alert(error.message);
-    }
-
 };
 // ========================== Devicde rehistration form --end ==========================
 
