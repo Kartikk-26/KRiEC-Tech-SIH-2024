@@ -1,56 +1,99 @@
-    /* Soil Moisture Page Styles */
-    .data-head {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;
-        margin-top: 1.7rem;
-    }
+/* Soil Moisture Page Styles */
+body {
+    background-color: #1b1b1b; /* Line 1: Set a dark background color */
+    color: #e0e0e0; /* Line 2: Adjust text color for contrast */
+}
 
+.headerArea .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; /* Line 7: Set navbar text color to white */
+}
+
+.data-head {
+    margin-bottom: 20px;
+    margin-top: 2rem;
+}
+
+.data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.data-item {
+    background-color: #333333; /* Line 20: Set a darker background for data items */
+    color: #ffffff; /* Line 21: Set text color to white */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Line 25: Adjust shadow for better visibility */
+    transition: transform 0.2s;
+}
+
+.data-item:hover {
+    transform: scale(1.05);
+}
+
+.data-head h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff; /* Line 34: Change heading color to white */
+}
+
+.data-item h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.value {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+#realTimeChart {
+    width: 100%;
+    max-width: 1000px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: #2c2c2c; /* Line 48: Set a dark background for the chart area */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Line 50: Adjust shadow for better visibility */
+}
+
+@media (max-width: 768px) {
     .data-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-
-    .data-item {
-        flex: 0 0 50%;
-        margin: 0 10px;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-    }
-
-    .soilMoisture__container {
-        padding: 50px 0;
-        text-align: center;
-        color: #fff;
-        display: grid;
         grid-template-columns: 1fr;
-        gap: 1rem;
     }
 
     .data-head h3 {
-        font-size: 24px;
-        font-weight: bold;
+        font-size: 1.5rem;
     }
 
     .data-item h2 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
+        font-size: 1.2rem;
     }
 
     .value {
-        font-size: 24px;
-        font-weight: bold;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .headerArea .navbar-brand {
+        font-size: 1.2rem;
     }
 
-    #realTimeChart {
-        width: 100%;
-        max-width: 1000px;
-        height: 200px;
-        margin: 0 auto;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
+    .data-head h3 {
+        font-size: 1.3rem;
     }
+
+    .data-item h2 {
+        font-size: 1rem;
+    }
+
+    .value {
+        font-size: 1.2rem;
+    }
+}
