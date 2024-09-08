@@ -198,3 +198,49 @@ body {
     font-weight: 500;
     margin-top: 12px;
 }
+
+@media(max-width: 420px) {
+    .container1 {
+        width: 400px;
+    }
+
+    .search-box input {
+        font-size: 16px;
+    }
+
+    .weather-box img {
+        width: 45%;
+    }
+
+    .weather-box .temperature {
+        font-size: 48px;
+    }
+
+    .weather-box .temperature span {
+        font-size: 18px;
+    }
+
+    .weather-box .description {
+        font-size: 18px;
+    }
+
+    .weather-details i {
+        font-size: 40px;
+    }
+
+    .weather-details span {
+        font-size: 18px;
+    }
+
+    .weather-details p {
+        font-size: 12px;
+    }
+
+    .not-found img {
+        width: 55%;
+    }
+
+    .not-found p {
+        font-size: 18px;
+    }
+}
