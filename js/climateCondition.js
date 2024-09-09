@@ -2,6 +2,9 @@ const container = document.querySelector(".container1");
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
+let temp;
+let humi;
+let windSp;
 
 function ClimateCondition(city) {
     const APIKey = "92e4e88e94b0469aa0a7c6648d04d088";
@@ -68,25 +71,40 @@ function ClimateCondition(city) {
                 default:
                     image.src = "image/cloud.png";
             }
-
-            temperature.innerHTML = `${parseInt(
-                json.main.temp
-            )}<span>°C</span>`;
+            temp = parseInt(json.main.temp);
+            humi = json.main.humidity;
+            windSp = parseInt(json.wind.speed);
+            console.log("wsp:", windSp);
+            temperature.innerHTML = `${temp}<span>°C</span>`;
             description.innerHTML = `${json.weather[0].description}`;
-            humidity.innerHTML = `${json.main.humidity}%`;
-            wind.innerHTML = `${parseInt(json.wind.speed)}km/h`;
+            humidity.innerHTML = `${humi}%`;
+            wind.innerHTML = `${windSp}km/h`;
         });
 }
 
-//Get Reference to our Elements
-// let number = document.getElementById('number');
-// let counter =0;
 
-// setInterval(()=>{
-//     if (counter == 65) {
-//         clearInterval;
-//     }else{
-//         counter +=1;
-//         number.innerHTML =  `${counter}%`; 
-//     }
-// },30)
+// Select the HTML elements for humidity and wind speed
+const humidityElement = document.querySelector('#humi');
+const windSpeedElement = document.querySelector('#windSpeed');
+
+// Function to update the weather details
+function updateMoisture(city) {
+    const APIKey = "92e4e88e94b0469aa0a7c6648d04d088";
+
+    if (city == "") {
+        return;
+    }
+
+    fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
+    )
+        .then((Response) => Response.json())
+        .then((json) => {
+            temp = parseInt(json.main.temp);
+            humi = json.main.humidity;
+            windSp = parseInt(json.wind.speed);
+            humidityElement.innerText = `${humi}%`;
+            windSpeedElement.innerText = `${windSp} km/h`;
+            console.log("wsp:", windSp); 
+        });
+}

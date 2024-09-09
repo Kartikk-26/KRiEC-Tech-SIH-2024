@@ -89,58 +89,6 @@ if (Page === "deviceRegistration") {
     });
 }
 if (Page === "soilMoisture") {
-    // Soil_moisture_page
-
-    // Function to get and display the values
-    var database = firebase.database();
-
-    var dataRef = database.ref('sensorValue'); // Replace with your 'sensorValue' path
-
-    var chartData = [];
-    var timeLabels = [];
-
-    var ctx = document.getElementById('realTimeChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: timeLabels,
-            datasets: [{
-                label: 'Sensor Value',
-                data: chartData,
-                fill: true,
-
-                borderColor: '#ADFF2F',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    dataRef.on('value', function (snapshot) {
-        var sensorValue = snapshot.val();
-
-        document.getElementById('tempValue').innerHTML = sensorValue + " &#8451;";
-        document.getElementById('humiValue').innerHTML = sensorValue + "%";
-
-        chartData.push(sensorValue); // Push sensor value data
-        timeLabels.push(new Date().toLocaleTimeString()); // Push timestamp
-
-        // Limit the number of data points shown
-        const maxDataPoints = 10;
-        if (chartData.length > maxDataPoints) {
-            chartData.shift();
-            timeLabels.shift();
-        }
-
-        myChart.update(); // Update the chart
-    });
-
 }
 if (Page === "timePeriod") {
     // Call the function to display data and create the chart when the page loads
@@ -457,6 +405,10 @@ async function fetch__details() {
         ClimateCondition(docSnap.data().Area);
     }
     // ==== climate_condition_page --end ====
+    if (Page === "soilMoisture") {
+        updateMoisture(docSnap.data().Area);
+        // Soil moisture page
+    }
 }
 // !!IMPORTANT  --end  !!IMPORTANT
 
