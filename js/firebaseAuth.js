@@ -383,7 +383,7 @@ async function fetch__details() {
 
     if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
-        console.log("Timestamp: ", new Date(docSnap.data().Timestamp).toLocaleDateString());
+        console.log("Timestamp: ", new Date(docSnap.data().CropStage.Timestamp).toLocaleDateString());
     } else {
         // docSnap.data() will be undefined in this case
         console.log("No such document!");
@@ -427,9 +427,8 @@ async function deviceRegistration() {
         await setDoc(userDocRef, {
             MacId: macId,
             Area: area,
-            CropStage: cropStage,
-            CropType: cropType,
-            Timestamp: new Date().getTime()
+            CropStage: { stage: cropStage, Timestamp: new Date().getTime() },
+            CropType: cropType
             // "08-23-2022", manually added date format: MM-DD-YYYY 
         }).then(() => {
             console.log("Document successfully written!");
