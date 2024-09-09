@@ -16,110 +16,206 @@ html {
 }
 
 :root {
-    --color-primary: #6c63ff;
-    --color-success: #00bf8e;
-    --color-warning: #f7c94b;
-    --color-danger: #f74852;
-    --color-danger-variant: rgba(247, 88, 66, 0.4);
-    --color-white: #fff;
-    --color-light: rgba(255, 255, 255, 0.7);
-    --color-black: #000;
-    --color-bg: #1f2641;
-    --color-bg1: #2e3267;
-    --color-bg2: #424890;
-    --color-nav: red;
-
+    --color-primary: #1e1e2f; /* Primary dark tone */
+    --color-secondary: #282a36; /* Slightly lighter dark */
+    --color-accent: #000000bb; /* Soft black for highlights */
+    --color-light: #f8f8f2; /* Light text for readability */
+    --color-dark: #44475a; /* Darker for depth */
+    --color-hover: #6272a4; /* Muted blue for hover effects */
+    --color-bg: #1f1f47; /* Base background color */
     --container-width-lg: 80%;
     --container-width-md: 90%;
     --container-width-sm: 94%;
-
-    --transition: all 400ms ease;
-
-    --delay-time: 0.2s;
+    --transition: all 300ms ease-in-out;
 }
 
-/* Styles for the card container */
+/* Body and Background */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-light);
+    background: var(--color-bg) url('../image/5197434.jpg') no-repeat center center fixed; /* Add your image URL */
+    background-size: cover; /* Make the background image cover the entire page */
+    transition: var(--transition);
+}
+
+/* Container for Cards */
 .container {
     width: var(--container-width-lg);
     margin: 0 auto;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
 
 .homepage__container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
     align-items: center;
-    gap: 5rem;
-    height: 100%;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
 }
 
-/* Styles for the body container */
-body {
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.7;
-    color: var(--color-white);
-    background-color: var(--color-bg);
-}
-
-
-
-/* Styles for each card */
+/* Card Styles */
 .card {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: auto;
-    gap: 1rem;
-    background-color: transparent;
-    border: none;
+    background-color: var(--color-secondary);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background: url('your-card-image-url.jpg') no-repeat center center; /* Add your image URL for the card background */
+    background-size: cover; /* Ensure the card background image covers the card */
 }
 
-/* Styles for the buttons */
+.card:hover {
+    background-color: var(--color-hover);
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Buttons */
 .btn {
-    display: inline-block;
-    background-color: var(--color-white);
-    color: var(--color-black);
-    padding: 1rem 2rem;
-    border: 1px solid transparent;
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
     font-weight: 500;
     transition: var(--transition);
-    border-radius: 0.3rem;
 }
 
 .btn:hover {
-    background-color: transparent;
-    color: var(--color-white);
-    border-color: var(--color-white);
+    background-color: var(--color-hover);
+    color: var(--color-light);
 }
 
 .btn-primary {
-    background-color: var(--color-danger);
-    color: var(--color-white);
+    background-color: var(--color-accent);
+    color: var(--color-light);
 }
 
-/* Styles for the card images */
+/* Professional Navbar */
+.navbar {
+    background: transparent !important;
+    padding: 1rem 2rem; /* More padding for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: sticky; /* Stick to top when scrolling */
+    top: 0;
+    z-index: 100; /* Ensure it's always on top */
+    transition: background-color 300ms ease-in-out;
+}
+
+/* Brand Style */
+.navbar-brand {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-light) !important;
+    text-transform: uppercase; /* Makes it stand out more */
+    letter-spacing: 2px;
+    transition: color 300ms ease;
+}
+
+.navbar-brand:hover {
+    color: var(--color-hover) !important; /* Subtle hover color change */
+}
+
+/* Navbar Links */
+.nav-link {
+    color: var(--color-light) !important;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem; /* More padding for better click targets */
+    text-transform: uppercase;
+    position: relative; /* For hover effect */
+    transition: color 300ms ease;
+}
+
+/* Modern Hover Effect */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--color-accent); /* Accent color for hover */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: var(--color-hover) !important; /* Change color on hover */
+}
+
+.nav-link:hover::before {
+    visibility: visible;
+    width: 100%; /* Full underline on hover */
+}
+
+/* Card Image */
 .card img {
-    border-radius: 100%;
-    width: 150px;
-    height: 150px;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 1rem;
     object-fit: cover;
-}
-
-.card .btn {
-    border-radius: 1rem;
-    font-weight: bolder;
-    font-size: medium;
-    width: 90%;
+    display: block;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; /* Center the image in the card */
 }
 
-.hide {
-    display: none;
+/* Footer Styles */
+.footer-area {
+    padding: 15px 0; /* Reduced padding for a smaller footer */
+    background-color: rgba(30, 30, 47, 0.5); /* Add transparency to the background */
+    color: var(--color-light); /* Keep the light text for readability */
+    text-align: center; /* Center the footer content */
 }
 
-.dropdown-active {
-    color: #00FFFF;
+.footer-area h5 {
+    margin-bottom: 10px; /* Adjust margins for smaller footer */
+    font-weight: 600;
+}
+
+.footer-area ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.footer-area ul li {
+    margin-bottom: 5px; /* Slightly reduce the margin between list items */
+}
+
+.footer-area ul li a {
+    color: var(--color-light);
+    transition: color 0.3s ease;
+}
+
+.footer-area ul li a:hover {
+    color: var(--color-hover);
+}
+
+.footer-area hr {
+    border-top: 1px solid var(--color-dark);
+    margin: 10px 0; /* Add margin to separate hr from text */
+}
+
+.footer-area .text-center p {
+    margin-top: 5px; /* Reduce margin for smaller footer */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .homepage__container {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 1rem;
+    }
+
+    .card img {
+        width: 100px;
+        height: 100px;
+    }
 }

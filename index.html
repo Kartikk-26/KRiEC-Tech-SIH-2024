@@ -12,9 +12,9 @@
     <header class="headerArea">
         <div class="mainMenu">
             <!-- navbar -->
-            <nav class="navbar navbar-dark bg-dark fixed-top">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">KriEC Tech</a>
+                    <a class="navbar-brand fw-bold" href="#">KriEC Tech</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                         aria-label="Toggle navigation">
@@ -23,18 +23,18 @@
                     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
                         aria-labelledby="offcanvasDarkNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
+                            <h5 class="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li class="nav-item">
-                                    <a class="nav-link active home-page-call" aria-current="page">Home</a>
+                                    <a class="nav-link active fw-bold home-page-call" aria-current="page">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle fw-bold" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                         Services
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
@@ -52,18 +52,17 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link about-us-call">About us</a>
+                                    <a class="nav-link about-us-call fw-bold">About us</a>
                                 </li>
                                 <hr>
-
                                 <li class="nav-item">
-                                    <a class="nav-link login-form-call" aria-current="page">Login</a>
+                                    <a class="nav-link login-form-call fw-bold" aria-current="page">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link registration-form-call" aria-current="page">Register</a>
+                                    <a class="nav-link registration-form-call fw-bold" aria-current="page">Register</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link logout-button" aria-current="page">Logout</a>
+                                    <a class="nav-link logout-button fw-bold" aria-current="page">Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,7 +74,6 @@
     </header>
 
     <!-- Home Page -->
-
     <div class="container homepage__container">
         <div class="card">
             <img src="./img/soil-moisture.jpeg" alt="">
@@ -102,14 +100,43 @@
             <button class="btn crop-type-call">Crop type</button>
         </div>
     </div>
-
     <!-- Home Page --end -->
 
-    </div>
+    <!-- Footer Start -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5>KriEC Tech</h5>
+                    <p>Leading innovation in smart irrigation and crop management.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a href="#">Soil Moisture</a></li>
+                        <li><a href="#">Climate Condition</a></li>
+                        <li><a href="#">Water Use</a></li>
+                        <li><a href="#">Crop Stage</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 KriEC Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
 
-   
-
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
