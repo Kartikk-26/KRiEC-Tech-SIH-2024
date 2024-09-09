@@ -435,7 +435,7 @@ async function fetch__details() {
 
     if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
-        console.log("--> ", docSnap.data().MacId);
+        console.log("Timestamp: ", new Date(docSnap.data().Timestamp).toLocaleDateString());
     } else {
         // docSnap.data() will be undefined in this case
         console.log("No such document!");
@@ -457,21 +457,6 @@ async function fetch__details() {
         ClimateCondition(docSnap.data().Area);
     }
     // ==== climate_condition_page --end ====
-
-    // ==== Crop Type page ====
-    // if (Page === "cropType") {
-    //     console.log("inside 2");
-    //     console.log(cropType);
-    //     if (cropType.toLowerCase() === "wheat") {
-    //         document.querySelector(".wheat").classList.remove("hide");
-    //     } else if (cropType.toLowerCase() === "maize") {
-    //         document.querySelector(".maize").classList.remove("hide");
-    //     } else {
-    //         document.querySelector(".wheat").classList.add("hide");
-    //         document.querySelector(".maize").classList.add("hide");
-    //     }
-    // }
-    // ==== Crop Type page --end ====
 }
 // !!IMPORTANT  --end  !!IMPORTANT
 
@@ -491,7 +476,9 @@ async function deviceRegistration() {
             MacId: macId,
             Area: area,
             CropStage: cropStage,
-            CropType: cropType
+            CropType: cropType,
+            Timestamp: new Date().getTime()
+            // "08-23-2022", manually added date format: MM-DD-YYYY 
         }).then(() => {
             console.log("Document successfully written!");
             alert("Device registered successfully.");
