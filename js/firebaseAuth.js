@@ -374,15 +374,18 @@ function toggleLoginLogout() {
 
 
 
-
-
 // !!IMPORTANT  Fetching details from firebase server and fullfilling requirenments of all pages  !!IMPORTANT
 async function fetch__details() {
-    const docRef = doc(db, "users", email);
+    const trimmedEmail = email.trim();
+    const sanitizedEmail = trimmedEmail.replace(/[^\w\s]/gi, '');
+    const docRef = doc(db, "users", sanitizedEmail);
+    const espDataRef = doc(db, "users", sanitizedEmail, "espData", "DHT11");
+    const espDataSnap = await getDoc(espDataRef);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        console.log("espData: ", espDataSnap.data());
         console.log("Timestamp: ", new Date(docSnap.data().CropStage.Timestamp).toLocaleDateString());
     } else {
         // docSnap.data() will be undefined in this case
@@ -406,8 +409,9 @@ async function fetch__details() {
     }
     // ==== climate_condition_page --end ====
     if (Page === "soilMoisture") {
-        updateMoisture(docSnap.data().Area);
-        // Soil moisture page
+        document.querySelector('#temp').innerText = `${Math.floor(espDataSnap.data().Temperature)}°C`;
+        document.querySelector('#humi').innerText = `${Math.floor(espDataSnap.data().Humidity)}%`;
+        // updateMoisture(docSnap.data().Area);
     }
 }
 // !!IMPORTANT  --end  !!IMPORTANT
@@ -423,7 +427,10 @@ async function deviceRegistration() {
     if (macId.trim() == "") {
         alert("All fields are required");
     } else {
-        const userDocRef = doc(db, "users", email);
+        const trimmedEmail = email.trim();
+        const sanitizedEmail = trimmedEmail.replace(/[^\w\s]/gi, '');
+        console.log("Sanitized Email: ", sanitizedEmail);
+        const userDocRef = doc(db, "users", sanitizedEmail);
         await setDoc(userDocRef, {
             MacId: macId,
             Area: area,
