@@ -200,6 +200,10 @@ body {
     margin-top: 5px; /* Reduce margin for smaller footer */
 }
 
+.hide{
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .homepage__container {
@@ -219,3 +223,4 @@ body {
         height: 100px;
     }
 }
+
