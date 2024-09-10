@@ -61,7 +61,7 @@ body {
     text-align: center;
     transition: var(--transition);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    background: url('your-card-image-url.jpg') no-repeat center center; /* Add your image URL for the card background */
+    /* background: url('your-card-image-url.jpg') no-repeat center center; Add your image URL for the card background */
     background-size: cover; /* Ensure the card background image covers the card */
 }
 
