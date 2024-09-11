@@ -1,0 +1,98 @@
+/* Water Use Page Styles */
+
+.data-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 1.7rem;
+}
+
+.data-container {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-item {
+    flex: 0 0 50%;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 200px;
+    width: 800px;
+}
+
+.wateruse__container {
+    padding: 50px 0;
+    text-align: center;
+    color: #fff;
+    display: grid;
+}
+
+.data-head h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+  
+  .search-box {
+    flex: 1;
+    position: relative; /* Needed for positioning label */
+  }
+  
+  .search-label {
+    position: absolute;
+    left: 20px; /* Distance from left */
+    top: 50%;
+    transform: translateY(-50%);
+    color: white; /* Accent color for the label */
+    font-weight: bold;
+    pointer-events: none; /* Allows user to interact with input field without interference */
+    z-index: 1; /* Ensures label appears above the input field */
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 15px 20px 15px 60px; /* Padding adjusted for label space */
+    font-size: 16px;
+    border: 2px solid #333;
+    border-radius: 50px;
+    background-color: #1e1e1e; /* Dark background for input */
+    color: #f5f5f5; /* Light text color */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Light shadow */
+  }
+  
+  .search-box input:focus {
+    border-color: white; /* Accent color for focus */
+    background-color: #2c2c2c; /* Slightly lighter background on focus */
+    outline: none;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2); /* Focus shadow */
+  }
+  
+  .search-box input::placeholder {
+    color: #888; /* Light gray for placeholder text */
+    font-style: normal;
+  }
+  
+  .search-box input:hover {
+    border-color: white; /* Accent color for hover */
+  }
+  
+  /* Media query for mobile responsiveness */
+  @media (max-width: 768px) {
+    .search-container {
+      flex-direction: column; /* Stack search bars vertically on small screens */
+    }
+  }
+  
