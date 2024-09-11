@@ -6,7 +6,6 @@
 }
 
 body {
-    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -26,7 +25,12 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 20px;
+    /* Remove margin to add any items on left or right */
+    margin-left: 40%;
+    margin-right: 40%;
     transition: height 0.6s ease;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-box {
