@@ -54,15 +54,14 @@ body {
     padding: 20px;
     border-radius: 10px;
     transition: background-color 0.3s, transform 0.3s;
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Transparent white */
-    backdrop-filter: blur(10px);
+    background-color: rgba(11, 1, 1, 0.6); /* More opacity for translucency */
     /* Blur effect */
 }
 
+
 .weather-card:hover {
     transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(11, 10, 10, 0.2);
     /* Subtle background change on hover */
 }
 
