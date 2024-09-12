@@ -405,7 +405,7 @@ async function fetch__details() {
 
     // ==== climate_condition_page ====
     if (Page === "climateCondition") {
-        ClimateCondition(docSnap.data().Area);
+        // ClimateCondition(docSnap.data().Area);
     }
     // ==== climate_condition_page --end ====
     if (Page === "soilMoisture") {
