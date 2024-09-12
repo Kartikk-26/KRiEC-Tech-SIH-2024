@@ -16,13 +16,20 @@ html {
 }
 
 :root {
-    --color-primary: #1e1e2f; /* Primary dark tone */
-    --color-secondary: #282a36; /* Slightly lighter dark */
-    --color-accent: #000000bb; /* Soft black for highlights */
-    --color-light: #f8f8f2; /* Light text for readability */
-    --color-dark: #44475a; /* Darker for depth */
-    --color-hover: #6272a4; /* Muted blue for hover effects */
-    --color-bg: #1f1f47; /* Base background color */
+    --color-primary: #1e1e2f;
+    /* Primary dark tone */
+    --color-secondary: #282a36;
+    /* Slightly lighter dark */
+    --color-accent: #000000bb;
+    /* Soft black for highlights */
+    --color-light: #f8f8f2;
+    /* Light text for readability */
+    --color-dark: #44475a;
+    /* Darker for depth */
+    --color-hover: #6272a4;
+    /* Muted blue for hover effects */
+    --color-bg: #1f1f47;
+    /* Base background color */
     --container-width-lg: 80%;
     --container-width-md: 90%;
     --container-width-sm: 94%;
@@ -33,8 +40,12 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
     color: var(--color-light);
-    background: var(--color-bg) url('../image/5197434.jpg') no-repeat center center fixed; /* Add your image URL */
-    background-size: cover; /* Make the background image cover the entire page */
+    background: url('../img/bg-image.jpeg') no-repeat center center fixed;
+    backdrop-filter: brightness(55%);
+    /* Add your backdrop filter properties here */
+    /* Add your image URL */
+    background-size: cover;
+    /* Make the background image cover the entire page */
     transition: var(--transition);
 }
 
@@ -55,18 +66,20 @@ body {
 
 /* Card Styles */
 .card {
-    background-color: var(--color-secondary);
+    /* background-color: var(--color-secondary); */
+    background-color: transparent;
+    backdrop-filter: blur(20px);
     padding: 1.5rem;
     border-radius: 0.75rem;
     text-align: center;
     transition: var(--transition);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    /* background: url('your-card-image-url.jpg') no-repeat center center; Add your image URL for the card background */
-    background-size: cover; /* Ensure the card background image covers the card */
+    background-size: cover;
+    /* Ensure the card background image covers the card */
 }
 
 .card:hover {
-    background-color: var(--color-hover);
+    background-color: rgba(0, 0, 0, 0.5);
     transform: translateY(-8px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
@@ -92,13 +105,35 @@ body {
 }
 
 /* Professional Navbar */
+
+
+.logo {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-light) !important;
+    text-transform: uppercase;
+    /* Makes it stand out more */
+    /* Add the path to your logo image */
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* Adjust the background size as needed */
+    background-position: center;
+    /* Center the logo image */
+    max-width: 30px;
+}
+
+
 .navbar {
     background: transparent !important;
-    padding: 1rem 2rem; /* More padding for better spacing */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    position: sticky; /* Stick to top when scrolling */
+    padding: 1rem 2rem;
+    /* More padding for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    position: sticky;
+    /* Stick to top when scrolling */
     top: 0;
-    z-index: 100; /* Ensure it's always on top */
+    z-index: 100;
+    /* Ensure it's always on top */
     transition: background-color 300ms ease-in-out;
 }
 
@@ -107,22 +142,26 @@ body {
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--color-light) !important;
-    text-transform: uppercase; /* Makes it stand out more */
+    text-transform: uppercase;
+    /* Makes it stand out more */
     letter-spacing: 2px;
     transition: color 300ms ease;
 }
 
 .navbar-brand:hover {
-    color: var(--color-hover) !important; /* Subtle hover color change */
+    color: var(--color-hover) !important;
+    /* Subtle hover color change */
 }
 
 /* Navbar Links */
 .nav-link {
     color: var(--color-light) !important;
     font-weight: 600;
-    padding: 0.75rem 1.5rem; /* More padding for better click targets */
+    padding: 0.75rem 1.5rem;
+    /* More padding for better click targets */
     text-transform: uppercase;
-    position: relative; /* For hover effect */
+    position: relative;
+    /* For hover effect */
     transition: color 300ms ease;
 }
 
@@ -134,18 +173,21 @@ body {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background-color: var(--color-accent); /* Accent color for hover */
+    background-color: var(--color-accent);
+    /* Accent color for hover */
     visibility: hidden;
     transition: all 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-    color: var(--color-hover) !important; /* Change color on hover */
+    color: var(--color-hover) !important;
+    /* Change color on hover */
 }
 
 .nav-link:hover::before {
     visibility: visible;
-    width: 100%; /* Full underline on hover */
+    width: 100%;
+    /* Full underline on hover */
 }
 
 /* Card Image */
@@ -157,19 +199,25 @@ body {
     object-fit: cover;
     display: block;
     margin-left: auto;
-    margin-right: auto; /* Center the image in the card */
+    margin-right: auto;
+    /* Center the image in the card */
 }
 
 /* Footer Styles */
 .footer-area {
-    padding: 15px 0; /* Reduced padding for a smaller footer */
-    background-color: rgba(30, 30, 47, 0.5); /* Add transparency to the background */
-    color: var(--color-light); /* Keep the light text for readability */
-    text-align: center; /* Center the footer content */
+    padding: 15px 0;
+    /* Reduced padding for a smaller footer */
+    background-color: rgba(30, 30, 47, 0.5);
+    /* Add transparency to the background */
+    color: var(--color-light);
+    /* Keep the light text for readability */
+    text-align: center;
+    /* Center the footer content */
 }
 
 .footer-area h5 {
-    margin-bottom: 10px; /* Adjust margins for smaller footer */
+    margin-bottom: 10px;
+    /* Adjust margins for smaller footer */
     font-weight: 600;
 }
 
@@ -179,7 +227,8 @@ body {
 }
 
 .footer-area ul li {
-    margin-bottom: 5px; /* Slightly reduce the margin between list items */
+    margin-bottom: 5px;
+    /* Slightly reduce the margin between list items */
 }
 
 .footer-area ul li a {
@@ -193,14 +242,16 @@ body {
 
 .footer-area hr {
     border-top: 1px solid var(--color-dark);
-    margin: 10px 0; /* Add margin to separate hr from text */
+    margin: 10px 0;
+    /* Add margin to separate hr from text */
 }
 
 .footer-area .text-center p {
-    margin-top: 5px; /* Reduce margin for smaller footer */
+    margin-top: 5px;
+    /* Reduce margin for smaller footer */
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -223,4 +274,3 @@ body {
         height: 100px;
     }
 }
-

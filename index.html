@@ -12,33 +12,37 @@
     <header class="headerArea">
         <div class="mainMenu">
             <!-- navbar -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-top">
+            <nav class="navbar navbar-dark bg-dark fixed-top">
                 <div class="container-fluid">
-                    <a class="navbar-brand fw-bold" href="#">KriEC Tech</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                    <a class="navbar-brand" href="./index.html">KriEC Tech</a>
+                    <a class="navbar-brand" href="#">
+                        <img src="./img/logo.png" alt="Logo" style="width: 70px; height: 70px;">
+                    </a>
+                    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
                         aria-labelledby="offcanvasDarkNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
+                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li class="nav-item">
-                                    <a class="nav-link active fw-bold home-page-call" aria-current="page">Home</a>
+                                    <a class="nav-link" aria-current="page" href="./index.html">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle fw-bold" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
                                         Services
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item soil-moisture-call">Soil moisture</a></li>
+                                        <li><a class="dropdown-item dropdown-active soil-moisture-call">Soil
+                                                moisture</a></li>
                                         <li><a class="dropdown-item climate-condition-call">Climate condition</a></li>
                                         <li><a class="dropdown-item water-use-call">Water use</a></li>
                                         <li><a class="dropdown-item crop-stge-call">Crop stage</a></li>
@@ -52,17 +56,18 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link about-us-call fw-bold">About us</a>
+                                    <a class="nav-link about-us-call">About us</a>
                                 </li>
                                 <hr>
+
                                 <li class="nav-item">
-                                    <a class="nav-link login-form-call fw-bold" aria-current="page">Login</a>
+                                    <a class="nav-link login-form-call" aria-current="page">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link registration-form-call fw-bold" aria-current="page">Register</a>
+                                    <a class="nav-link registration-form-call" aria-current="page">Register</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link logout-button fw-bold" aria-current="page">Logout</a>
+                                    <a class="nav-link logout-button" aria-current="page">Logout</a>
                                 </li>
                             </ul>
                         </div>
