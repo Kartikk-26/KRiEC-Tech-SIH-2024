@@ -58,9 +58,9 @@ const pValueInput = document.getElementById("p-value");
 const kValueInput = document.getElementById("k-value");
 
 // Event listeners to handle input changes
-nValueInput.addEventListener("input", handleInputChange);
-pValueInput.addEventListener("input", handleInputChange);
-kValueInput.addEventListener("input", handleInputChange);
+// nValueInput.addEventListener("input", handleInputChange);
+// pValueInput.addEventListener("input", handleInputChange);
+// kValueInput.addEventListener("input", handleInputChange);
 
 function handleInputChange() {
   const nValue = nValueInput.value;
