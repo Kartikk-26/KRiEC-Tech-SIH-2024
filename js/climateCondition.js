@@ -103,8 +103,12 @@ function updateMoisture(city) {
             temp = parseInt(json.main.temp);
             humi = json.main.humidity;
             windSp = parseInt(json.wind.speed);
-            humidityElement.innerText = `${humi}%`;
-            windSpeedElement.innerText = `${windSp} km/h`;
-            console.log("wsp:", windSp); 
+            // humidityElement.innerText = `${humi}%`;
+            // windSpeedElement.innerText = `${windSp} km/h`;
+            const rainValue = json.rain["3h"];
+            console.log("Rain:", rainValue);
         });
 }
+
+// const rainValue = json.list[0].rain;
+// console.log("Rain:", rainValue); // Output: Rain: 2.51

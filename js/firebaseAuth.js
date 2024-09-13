@@ -89,6 +89,7 @@ if (Page === "deviceRegistration") {
     });
 }
 if (Page === "soilMoisture") {
+    updateMoisture("udaipur");
 }
 if (Page === "timePeriod") {
     // Call the function to display data and create the chart when the page loads
