@@ -89,7 +89,7 @@ if (Page === "deviceRegistration") {
     });
 }
 if (Page === "soilMoisture") {
-    // updateMoisture("udaipur");
+    getWeather("udaipur");
 }
 if (Page === "timePeriod") {
     // Call the function to display data and create the chart when the page loads
@@ -406,15 +406,12 @@ async function fetch__details() {
 
     // ==== climate_condition_page ====
     if (Page === "climateCondition") {
-        // ClimateCondition(docSnap.data().Area);
-        
+        getWeather(docSnap.data().Area);
     }
     // ==== climate_condition_page --end ====
     if (Page === "soilMoisture") {
         document.querySelector('#temp').innerText = `${Math.floor(espDataSnap.data().Temperature)}°C`;
-        document.querySelector('#moist').innerText = `${espDataSnap.data().Moisture}%`;
-        // ready(function (docSnap.data().Area));
-        fetch__details();
+        document.querySelector('#moist').innerText = `${Math.floor(espDataSnap.data().Moisture)}°C`;
         // document.querySelector('#humi').innerText = `${Math.floor(espDataSnap.data().Humidity)}%`;
         // updateMoisture(docSnap.data().Area);
     }
