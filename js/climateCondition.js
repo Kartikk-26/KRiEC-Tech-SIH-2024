@@ -1,19 +1,17 @@
-const container = document.querySelector(".container1");
-const weatherBox = document.querySelector(".weather-box");
-const weatherDetails = document.querySelector(".weather-details");
-const error404 = document.querySelector(".not-found");
-let temp;
-let humi;
-let windSp;
+// const container = document.querySelector(".container1");
+// const weatherBox = document.querySelector(".weather-box");
+// const weatherDetails = document.querySelector(".weather-details");
+// const error404 = document.querySelector(".not-found");
 
 var rainfall;
 var forecastRain;
 var city;
-function getWeather(cityName) {
-    city = cityName;
-}
+// function getWeather(cityName) {
+//     city = cityName;
+// }
 
-$(document).ready(function (city) {
+
+function getWeather(cityName) {
     var APIKey = "402fe03746dde66fe92a09674269957b";
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
 
@@ -63,5 +61,5 @@ $(document).ready(function (city) {
             $('.card-rain' + i).text('Rainfall: ' + forecastRain + " mm"); // Rainfall in mm
         }
     });
-});
+};
 
