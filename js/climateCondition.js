@@ -14,9 +14,8 @@ function getWeather(cityName) {
 }
 
 $(document).ready(function (city) {
-    var city = "Udaipur";
     var APIKey = "402fe03746dde66fe92a09674269957b";
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
 
     $.ajax({
         url: queryURL,
@@ -39,7 +38,7 @@ $(document).ready(function (city) {
         $(".tempC").text("Temperature: " + tempC + "°C");
     });
 
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIKey;
     $.ajax({
         url: forecastURL,
         method: "GET"
@@ -66,18 +65,3 @@ $(document).ready(function (city) {
     });
 });
 
-
-$(document).ready(function (city) {
-    var city = "Udaipur";
-    var APIKey = "402fe03746dde66fe92a09674269957b";
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        // Checking if 'rain' data exists and showing accordingly in one line
-        rainfall = response.rain && response.rain['1h'] ? response.rain['1h'] : 0;
-        console.log(rainfall);
-    });
-});
