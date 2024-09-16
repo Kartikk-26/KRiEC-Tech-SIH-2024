@@ -8,12 +8,12 @@ let windSp;
 
 var rainfall;
 var forecastRain;
-var cityName;
-function getWeather(city) {
-    cityName = city;
+var city;
+function getWeather(cityName) {
+    city = cityName;
 }
 
-$(document).ready(function () {
+$(document).ready(function (city) {
     var APIKey = "402fe03746dde66fe92a09674269957b";
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
 
