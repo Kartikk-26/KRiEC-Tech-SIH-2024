@@ -8,6 +8,10 @@ let windSp;
 
 var rainfall;
 var forecastRain;
+var city;
+function getWeather(cityName) {
+    city = cityName;
+}
 
 $(document).ready(function (city) {
     var city = "Udaipur";
