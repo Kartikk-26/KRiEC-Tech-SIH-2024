@@ -42,12 +42,12 @@ if (Page === "login") {
     document.querySelector("#login-password").addEventListener("keyup", (e) => {
         if (event.keyCode === 13) {
             e.preventDefault();
-            login();
+            signInFunction();
         }
     });
     // Login button
     document.querySelector("#login").addEventListener("click", () => {
-        login();
+        signInFunction();
     });
     // Forgot Password link
     document.querySelector("#forgot-password").addEventListener("click", () => {
@@ -60,20 +60,20 @@ if (Page === "login") {
     });
 
     document.querySelector("#GOOGLE").addEventListener("click", () => {
-        google_auth();
+        googleAuthentication();
     });
 }
 if (Page === "registration") {
 
     // Sign up button
     document.querySelector("#register").addEventListener("click", (e) => {
-        Signup();
+        signUpFunction();
     });
     //register when you hit the enter key
     document.querySelector("#registration-repass").addEventListener("keyup", (e) => {
         if (event.keyCode === 13) {
             e.preventDefault();
-            Signup();
+            signUpFunction();
         }
     });
 }
@@ -88,14 +88,6 @@ if (Page === "deviceRegistration") {
         }
     });
 }
-if (Page === "soilMoisture") {
-}
-if (Page === "timePeriod") {
-    // Call the function to display data and create the chart when the page loads
-    window.onload = function () {
-        displayDataAndCreateChart();
-    };
-}
 // ========================== --end ==========================
 
 
@@ -106,27 +98,27 @@ if (Page === "timePeriod") {
 // ========================== Navbar EventListners ==========================
 
 // Signout button
-let logout = document.querySelectorAll(".logout-button");
-for (let i = 0; i < logout.length; i++) {
-    logout[i].addEventListener("click", () => {
+let signOutCall = document.querySelectorAll(".logout-button");
+for (let i = 0; i < signOutCall.length; i++) {
+    signOutCall[i].addEventListener("click", () => {
         auth.signOut().then(() => {
-            // Sign-out successful.
+            window.location.href = "./index.html";
         }).catch((error) => {
-            // An error happened.
+            alert("Error signing out: ", error);
         });
     });
 }
 // Want to - Sign up button
-let regCall = document.querySelectorAll(".registration-form-call");
-for (let i = 0; i < regCall.length; i++) {
-    regCall[i].addEventListener("click", () => {
+let signUpCall = document.querySelectorAll(".registration-form-call");
+for (let i = 0; i < signUpCall.length; i++) {
+    signUpCall[i].addEventListener("click", () => {
         window.location.href = "registration.html";
     });
 }
 // Want to - sign in button
-let loginCall = document.querySelectorAll(".login-form-call");
-for (let i = 0; i < loginCall.length; i++) {
-    loginCall[i].addEventListener("click", () => {
+let signInCall = document.querySelectorAll(".login-form-call");
+for (let i = 0; i < signInCall.length; i++) {
+    signInCall[i].addEventListener("click", () => {
         window.location.href = "login.html";
     });
 }
@@ -147,7 +139,7 @@ for (let i = 0; i < homeCall.length; i++) {
 
 
 // ========================== Registration ==========================
-const Signup = () => {
+const signUpFunction = () => {
     const email = document.querySelector("#registration-email").value;
     const pass = document.querySelector("#registration-pass").value;
     const repass = document.querySelector("#registration-repass").value;
@@ -198,7 +190,7 @@ const Signup = () => {
 // ========================== Registration --end ==========================
 
 // ========================== Login ==========================
-const login = () => {
+const signInFunction = () => {
     email = document.querySelector("#login-email").value;
     const password = document.querySelector("#login-password").value;
 
@@ -231,7 +223,7 @@ const login = () => {
 
 // ========================== Authentication ==========================
 const provider = new GoogleAuthProvider();
-const google_auth = () => {
+const googleAuthentication = () => {
     signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -271,7 +263,7 @@ const forgotPassword = (email) => {
 // ========================== successfull - Login ==========================
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        console.log("User is signed in:", user); // logging if user is authenticated
+        // console.log("User is signed in:", user); // logging if user is authenticated
         loginStatus = true;  // setting login status to true 
         email = user.email;
         console.log("Email : ", email);
@@ -329,7 +321,6 @@ onAuthStateChanged(auth, (user) => {
         });
     }
     toggleLoginLogout();
-
 });
 // ========================== successfull - Login --end ==========================
 
@@ -383,14 +374,14 @@ async function fetch__details() {
     const espDataSnap = await getDoc(espDataRef);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        console.log("espData: ", espDataSnap.data());
-        console.log("Timestamp: ", new Date(docSnap.data().CropStage.Timestamp).toLocaleDateString());
-    } else {
-        // docSnap.data() will be undefined in this case
-        console.log("No such document!");
-    }
+    // if (docSnap.exists()) {
+    //     console.log("Document data:", docSnap.data());
+    //     console.log("espData: ", espDataSnap.data());
+    //     console.log("Timestamp: ", new Date(docSnap.data().CropStage.Timestamp).toLocaleDateString());
+    // } else {
+    //     // docSnap.data() will be undefined in this case
+    //     console.log("No such document!");
+    // }
 
     // ==== Edit-profile-page Display existing values ====
     if (Page === "deviceRegistration") {
@@ -412,7 +403,6 @@ async function fetch__details() {
         document.querySelector('#temp').innerText = `${Math.floor(espDataSnap.data().Temperature)}°C`;
         document.querySelector('#moist').innerText = `${espDataSnap.data().Moisture}%`;
         fetch__details();
-        // document.querySelector('#humi').innerText = `${Math.floor(espDataSnap.data().Humidity)}%`;
     }
 }
 // !!IMPORTANT  --end  !!IMPORTANT
@@ -448,65 +438,3 @@ async function deviceRegistration() {
     }
 };
 // ========================== Devicde rehistration form --end ==========================
-
-
-
-// ========================== Time_Period_page ==========================
-// Function to display data from Firestore and create a chart
-async function displayDataAndCreateChart() {
-    const dataContainer = document.getElementById('dataContainer');
-    const ctx = document.getElementById('soil-moisture-data-chart').getContext('2d');
-    const data = []; // Array to store data for the chart
-    const labels = []; // Array to store labels for the chart
-
-    try {
-        const querySnapshot = await db.collection("EspData").get();
-
-        querySnapshot.forEach((doc) => {
-            const docData = doc.data();
-            // Assuming your data contains values and timestamps
-            data.push(docData.Humidity); // Replace 'value' with your actual field name
-            labels.push(docData.Temperature); // Replace 'timestamp' with your actual field name
-
-            // Display Firestore data in the container (similar to your previous code)
-            // ...
-        });
-
-        // Create the chart using Chart.js
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Data from Firestore',
-                    data: data,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                    fill: false
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-    } catch (error) {
-        console.error("Error getting documents: ", error);
-    }
-}
-
-const soilDataRangeInput = document.getElementById('soilDataRange');
-// const calendar = new Pikaday({ field: soilDataRangeInput });
-// ========================== Time_Period_page --end ==========================
-
-
-
-
-
-
-
-
