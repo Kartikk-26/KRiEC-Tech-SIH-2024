@@ -19,18 +19,20 @@
     <header class="headerArea">
         <div class="mainMenu">
             <!-- navbar -->
-            <nav class="navbar navbar-dark bg-dark fixed-top">
+            <nav class="navbar navbar-dark bg-dark sticky-top">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">KriEC Tech 2024</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
-                        aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+                        aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <a class="navbar-brand" href="./index.html">कृषि-Tech</a>
+                    <a class="navbar-brand" href="./index.html">
+                        <img src="./img/logo.png" alt="Logo" style="width: 70px; height: 70px;">
+                    </a>
                     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
                         aria-labelledby="offcanvasDarkNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">KriEC Tech</h5>
+                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">कृषि-Tech</h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
@@ -40,12 +42,12 @@
                                     <a class="nav-link" aria-current="page" href="./index.html">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link active dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
                                         Services
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item dropdown-active soil-moisture-call">Soil
+                                        <li><a class="dropdown-item soil-moisture-call">Soil
                                                 moisture</a></li>
                                         <li><a class="dropdown-item climate-condition-call">Climate condition</a></li>
                                         <li><a class="dropdown-item water-use-call">Water use</a></li>
@@ -60,17 +62,18 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link about-us-call">About us</a>
+                                    <a class="nav-link" href="./aboutUs.html">About us</a>
                                 </li>
                                 <hr>
+            
                                 <li class="nav-item">
-                                    <a class="nav-link login-form-call" aria-current="page">Login</a>
+                                    <a class="nav-link login-form-call" aria-current="page">Sign In</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link registration-form-call" aria-current="page">Register</a>
+                                    <a class="nav-link registration-form-call" aria-current="page">Sign Up</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link logout-button" aria-current="page">Logout</a>
+                                    <a class="nav-link logout-button" aria-current="page">Sign Out</a>
                                 </li>
                             </ul>
                         </div>
@@ -169,63 +172,49 @@
     </div>
     <!-- Soil Moisture --end -->
 
+
+    <!-- Footer Start -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h5>कृषि-Tech</h5>
+                    <p>Leading innovation in smart irrigation and crop management.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Features</h5>
+                    <ul>
+                        <li><a class="soil-moisture-call">Soil Moisture</a></li>
+                        <li><a class="climate-condition-call">Climate Condition</a></li>
+                        <li><a class="water-use-call">Water Use</a></li>
+                        <li><a class="crop-stge-call">Crop Stage</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a class="about-us-call">About Us</a></li>
+                        <li><a class="contact-call">Contact</a></li>
+                        <li><a class="registration-form-call">Sign Up</a></li>
+                        <li><a class="login-form-call">Sign In</a></li>
+                        <li><a class="logout-button">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2024 KriEC Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script deter type="module" src="./js/firebaseAuth.js"></script>
-    <!-- <script src="./js/climateCondition.js"></script> -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modeAuto = document.getElementById('mode-auto');
-            const modeManual = document.getElementById('mode-manual');
-            const manualOptions = document.getElementById('manual-options');
-            const scheduleSection = document.getElementById('schedule-section');
-            const setScheduleBtn = document.getElementById('set-schedule');
-            const stopScheduleBtn = document.getElementById('stop-schedule');
-            const scheduleResult = document.getElementById('schedule-result');
-            const aiOutput = document.getElementById('ai-output');
-
-            modeAuto.addEventListener('change', () => {
-                if (modeAuto.checked) {
-                    manualOptions.classList.add('d-none');
-                    scheduleSection.classList.add('d-none');
-                    aiOutput.classList.remove('d-none');
-                    aiOutput.textContent = 'Output generated by AI.';
-                }
-            });
-
-            modeManual.addEventListener('change', () => {
-                if (modeManual.checked) {
-                    manualOptions.classList.remove('d-none');
-                    aiOutput.classList.add('d-none');
-                }
-            });
-
-            document.getElementById('water-on').addEventListener('change', () => {
-                scheduleSection.classList.remove('d-none');
-            });
-
-            document.getElementById('water-off').addEventListener('change', () => {
-                scheduleSection.classList.add('d-none');
-                scheduleResult.textContent = '';
-            });
-
-            setScheduleBtn.addEventListener('click', () => {
-                const scheduleTime = document.getElementById('schedule-time').value;
-                if (scheduleTime) {
-                    scheduleResult.textContent = `Water supply scheduled at ${scheduleTime}.`;
-                    setScheduleBtn.classList.add('d-none');
-                    stopScheduleBtn.classList.remove('d-none');
-                }
-            });
-
-            stopScheduleBtn.addEventListener('click', () => {
-                scheduleResult.textContent = 'Water supply scheduling stopped.';
-                stopScheduleBtn.classList.add('d-none');
-                setScheduleBtn.classList.remove('d-none');
-            });
-        });
-    </script>
+    <script defer type="module" src="./js/soilMoisture.js"></script>
 </body>
 
 </html>
