@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 body {
     /* background-image: url(/WeatherDash/5197434.jpg); */
     background-size: cover;
@@ -5,48 +7,29 @@ body {
     background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
     color: #f5f5f5;
-    /* Brighter text color for better contrast */
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Page heading styling */
 .page-heading {
     color: #ecf0f1;
-    /* Lighter heading color for contrast */
     font-size: 2.5rem;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin: 20px auto;
     text-align: center;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    /* Subtle shadow for better readability */
+    max-width: 90%;
 }
 
 /* Responsive heading */
 @media (max-width: 768px) {
     .page-heading {
         font-size: 2rem;
-        margin-top: 15px;
-        margin-bottom: 20px;
+        margin: 15px auto;
     }
-}
-
-.rectangular-container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: rgba(255, 255, 255, 0.15);
-    /* Slightly more opaque for readability */
-    backdrop-filter: blur(10px);
-    /* Blur effect */
-}
-
-/* Hover effect with shadow and slight scale */
-.rectangular-container:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .weather-card {
@@ -54,22 +37,20 @@ body {
     padding: 20px;
     border-radius: 10px;
     transition: background-color 0.3s, transform 0.3s;
-    background-color: rgba(11, 1, 1, 0.6); /* More opacity for translucency */
-    /* Blur effect */
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent background initially */
+    backdrop-filter: blur(10px);
+    color: #f5f5f5; /* Text color to ensure visibility */
 }
-
 
 .weather-card:hover {
     transform: scale(1.05);
-    background-color: rgba(11, 10, 10, 0.2);
-    /* Subtle background change on hover */
+    background-color: rgba(0, 0, 0, 0.7); /* Black background on hover */
 }
 
 .current-weather p {
     font-size: 1.2rem;
     margin: 5px 0;
     color: #f5f5f5;
-    /* Brighter text */
 }
 
 /* Responsive text size for weather details */
@@ -81,12 +62,13 @@ body {
 
 .forecast {
     margin-top: 20px;
+    display: grid;
+    gap: 10px;
 }
 
 .card-title {
     font-size: 1.5rem;
     color: #00acc1;
-    /* More vibrant teal for titles */
 }
 
 /* Responsive card title */
@@ -98,35 +80,33 @@ body {
 
 /* Updated small cards displaying temperature, humidity, and rainfall */
 .forecast .row .col-md-2 {
-    background-color: rgba(255, 255, 255, 0.15);
-    /* Slightly more opaque */
+    background-color: rgba(255, 255, 255, 0.15); /* White with transparency */
     border: 2px solid #E0FFFF;
-    /* Light cyan border */
     border-radius: 8px;
     padding: 10px;
-    margin: 5px 0;
+    margin: 5px;
     transition: transform 0.3s, background-color 0.3s;
     backdrop-filter: blur(10px);
-    /* Blur effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Hover effect for forecast cards */
 .forecast .row .col-md-2:hover {
     transform: scale(1.07);
-    background-color: rgba(255, 255, 255, 0.25);
-    /* Slightly darker on hover */
+    background-color: rgba(0, 0, 0, 0.7); /* Black background on hover */
 }
 
 .forecast .row .col-md-2 p {
-    color: #f5f5f5;
-    /* Brighter text for forecast cards */
+    color: #f5f5f5; /* Ensure text is readable on hover */
 }
 
 /* Adjust image size in forecast */
 .forecast .row .col-md-2 img {
-    width: 60px;
-    height: 60px;
-    margin: 10px 0;
+    width: 30px;
+    height: 30px;
+    margin: 5px 0;
 }
 
 /* Responsive image size */
@@ -137,11 +117,11 @@ body {
     }
 }
 
+/* Hover effects */
 a:hover,
 h1:hover,
 p:hover,
 .city:hover {
     color: #00acc1;
-    /* Vibrant teal for hover effects */
     transition: color 0.3s;
 }
