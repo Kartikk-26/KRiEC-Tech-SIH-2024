@@ -92,49 +92,41 @@
 
         <div class="data-container">
             <div class="data-item">
-                <h2>Temperature</h2>
-                <div class="skill">
-                    <div class="outer">
-                        <div class="inner">
-                            <div id="temp">
-                                <!-- 22 &#8451; -->
-                            </div>
-                        </div>
+                <div class="progress-container">
+                    <div class="progress-item" id="temperature">
+                      <div class="heading">Temperature</div>
+                        <div class="progress-circle">
+                        <svg>
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: #ff6f61; stop-opacity: 1" />
+                                    <stop offset="100%" style="stop-color: #ffcc70; stop-opacity: 1" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="background" cx="50" cy="50" r="45"></circle>
+                            <circle class="progress" cx="50" cy="50" r="45"></circle>
+                        </svg>
+                        <div class="value" id="temp-value">0&#8451</div>
                     </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
-                        <defs>
-                            <linearGradient id="GradientColor">
-                                <stop offset="0%" stop-color="#DA22FF" />
-                                <stop offset="100%" stop-color="#9733EE" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="80" cy="80" r="70" stroke-linecap="round">
-                        </circle>
-                    </svg>
                 </div>
-
-                <h2>Soil Moisture</h2>
-                <div class="skill">
-                    <div class="outer">
-                        <div class="inner">
-                            <div id="moist">
-                                <!-- 65% -->
-                            </div>
-                        </div>
+            </div>
+                <div class="progress-item" id="moisture">
+                    <div class="heading">Moisture</div>
+                    <div class="progress-circle">
+                        <svg>
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: #4caf50; stop-opacity: 1" />
+                                    <stop offset="100%" style="stop-color: #81c784; stop-opacity: 1" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="background" cx="50" cy="50" r="45"></circle>
+                            <circle class="progress" cx="50" cy="50" r="45"></circle>
+                        </svg>
+                        <div class="value" id="moisture-value">0%</div>
                     </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
-                        <defs>
-                            <linearGradient id="GradientColor">
-                                <stop offset="0%" stop-color="#DA22FF" />
-                                <stop offset="100%" stop-color="#9733EE" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="80" cy="80" r="70" stroke-linecap="round">
-                        </circle>
-                    </svg>
                 </div>
+            </div>
             </div>
 
             <div class="data-item">

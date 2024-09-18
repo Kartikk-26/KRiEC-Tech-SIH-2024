@@ -8,7 +8,7 @@
 }
 
 .data-container {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 
@@ -246,4 +246,80 @@ input[type="radio"] {
 
 .d-none {
     display: none;
+}
+.progress-container {
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.heading {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.progress-circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+circle {
+    fill: none;
+    stroke-width: 10;
+    transition: stroke-dashoffset 1s, stroke 0.5s;
+}
+
+.background {
+    stroke: #e0e0e0;
+}
+
+.progress {
+    stroke: url(#gradient); /* Use gradient */
+    stroke-linecap: round; /* Rounded end cap */
+    stroke-dasharray: 283; /* Circumference of the circle */
+    stroke-dashoffset: 283;
+}
+
+.value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    color: white;
+    text-align: center;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+.progress-circle:hover .progress {
+    animation: pulse 1.5s infinite;
 }

@@ -63,3 +63,30 @@ function getWeather(cityName) {
     });
 };
 
+function updateProgressBar(id, value) {
+    const circle = document.querySelector(`#${id} .progress`);
+    const radius = circle.r.baseVal.value;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (value / 100) * circumference;
+
+    circle.style.strokeDashoffset = offset;
+    document.getElementById(`${id}-value`).textContent = `${value}%`;
+}
+
+// Example function to fetch data from the backend
+function fetchData() {
+    // Replace with your backend endpoint
+    fetch('https://example.com/api/progress')
+        .then(response => response.json())
+        .then(data => {
+            updateProgressBar('temperature', data.temperature);
+            updateProgressBar('moisture', data.moisture);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+// Update progress bars on page load
+window.onload = fetchData;
+
+// Set an interval to update data periodically
+setInterval(fetchData, 5000); // Update every 5 seconds
