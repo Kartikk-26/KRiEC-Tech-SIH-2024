@@ -53,42 +53,43 @@
     border-radius: 10px;
 }
 
-.skill{
+.skill {
     width: 160px;
     height: 160px;
-    
+
     position: relative;
 }
 
-.outer{
+.outer {
     height: 160px;
     width: 160px;
     border-radius: 50%;
     padding: 20px;
-    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0 , 0.15),
-    -6px -6px 10px -1px rgb(255,255,255,0.7);
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+        -6px -6px 10px -1px rgb(255, 255, 255, 0.7);
 }
 
-.inner{
+.inner {
     height: 120px;
     width: 120px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
-    inset -4px -4px 6px -1px rgba(255,255, 255 , 0.7),
-    -0.5px -0.5px 0px  rgba(255,255, 255 , 1),
-    0.5px 0.5px 0px  rgba(0,0, 0 , 0.15),
-    0px 12px 10px -10px rgba(0,0, 0 , 0.85);
+    box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+        inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+        -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+        0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+        0px 12px 10px -10px rgba(0, 0, 0, 0.85);
 }
-#number{
+
+#number {
     font-weight: 600;
     color: white;
     font-size: 30px;
 }
 
-circle{
+circle {
     fill: none;
     stroke: url(#GradientColor);
     stroke-width: 20px;
@@ -96,12 +97,14 @@ circle{
     stroke-dashoffset: 450;
     animation: anim 2s linear forwards;
 }
-@keyframes anim{
-    100%{
+
+@keyframes anim {
+    100% {
         stroke-dashoffset: 157.5;
     }
 }
-svg{
+
+svg {
     position: absolute;
     top: 0;
     left: 0;
@@ -110,121 +113,91 @@ svg{
 /* controller.css */
 
 /* General styles for the control panel */
-.data-item {
-    margin-top: 20px;
-}
-
-.controller {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    background-color: transparent;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.controller h3 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-}
-
-/* Toggle buttons for Auto/Manual */
-.toggle-group {
+.switch-group {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    gap: 10px;
+    /* Less gap for compact layout */
+}
+
+.timer-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align timers to the left */
+    margin-top: 10px;
+}
+
+/* The container of the switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* The slider (toggle button) */
+.toggle-switch input {
+    display: none;
+}
+
+.slider1,
+.slider2 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider1:before,
+.slider2:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider1 {
+    background-color: #4CAF50;
+}
+
+input:checked+.slider1:before {
+    transform: translateX(26px);
+}
+
+input:checked+.slider2 {
+    background-color: #4CAF50;
+}
+
+input:checked+.slider2:before {
+    transform: translateX(26px);
 }
 
 .toggle-label {
-    margin-right: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    color: white;
-    transition: color 0.3s ease;
+    font-size: 18px;
 }
 
-.toggle-label:hover {
-    color: #007bff;
+.switch-label {
+    font-size: 18px;
 }
 
-input[type="radio"] {
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-/* Styles for manual options */
-#manual-options {
-    border-top: 1px solid #e0e0e0;
-    padding-top: 15px;
-    margin-top: 15px;
-}
-
-/* Water Supply section */
-#manual-options h4 {
-    margin-bottom: 15px;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color:white;
-}
-
-#manual-options .toggle-group {
-    display: flex;
-    align-items: center;
-}
-
-#manual-options .toggle-group label {
-    margin-right: 15px;
-    font-weight: 500;
-    color:white;
-}
-
-/* Water Scheduling section */
-#schedule-section {
-    margin-top: 20px;
-}
-
-#schedule-section h4 {
-    margin-bottom: 15px;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color:white;
-}
-
-#schedule-section input[type="time"] {
+.timer-group input {
+    padding: 5px;
+    font-size: 1rem;
     border-radius: 4px;
     border: 1px solid #dcdcdc;
-    padding: 10px;
-    font-size: 1rem;
-    margin-bottom: 10px;
     width: 100%;
-    box-sizing: border-box;
-}
-
-#schedule-section button {
-    margin-right: 10px;
-    border-radius: 4px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-#schedule-section .btn-primary {
-    background-color: #007bff;
-    border: none;
-}
-
-#schedule-section .btn-primary:hover {
-    background-color: #0056b3;
-}
-
-#schedule-section .btn-danger {
-    background-color: #dc3545;
-    border: none;
-}
-
-#schedule-section .btn-danger:hover {
-    background-color: #c82333;
+    /* Make the input fields full width */
 }
 
 /* Styling for output generated by AI */

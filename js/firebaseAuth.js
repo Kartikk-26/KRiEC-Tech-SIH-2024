@@ -400,9 +400,11 @@ async function fetch__details() {
     }
     // ==== climate_condition_page --end ====
     if (Page === "soilMoisture") {
-        document.querySelector('#temp').innerText = `${Math.floor(espDataSnap.data().Temperature)}°C`;
-        document.querySelector('#moist').innerText = `${espDataSnap.data().Moisture}%`;
-        fetch__details();
+        // document.querySelector('#temp').innerText = `${Math.floor(espDataSnap.data().Temperature)}°C`;
+        // document.querySelector('#moist').innerText = `${espDataSnap.data().Moisture}%`;
+        updateProgressBar('temperature', Math.floor(espDataSnap.data().Temperature));
+        updateProgressBar('moisture', espDataSnap.data().Moisture);
+        // fetch__details();
     }
 }
 // !!IMPORTANT  --end  !!IMPORTANT
