@@ -87,39 +87,61 @@
 
         <div class="data-container">
             <div class="data-item">
-                <div class="progress-container">
-                    <div class="progress-item" id="temperature">
-                        <div class="heading">Temperature</div>
-                        <div class="progress-circle">
-                            <svg>
-                                <defs>
-                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color: #ff6f61; stop-opacity: 1" />
-                                        <stop offset="100%" style="stop-color: #ffcc70; stop-opacity: 1" />
-                                    </linearGradient>
-                                </defs>
-                                <circle class="background" cx="50" cy="50" r="45"></circle>
-                                <circle class="progress" cx="50" cy="50" r="45"></circle>
+                <div class="sensor-container">
+                    <div class="sensor-item">
+                        <!--             <h2>Moisture</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="moisture-percentage">0%</span>
+                                <div class="label">Moisture</div>
+                            </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
                             </svg>
-                            <div class="value" id="temperature-value">0&#8451</div>
                         </div>
+                        <!--             <div class="status" id="moisture-status"></div> -->
                     </div>
-
-                    <div class="progress-item" id="moisture">
-                        <div class="heading">Moisture</div>
-                        <div class="progress-circle">
-                            <svg>
-                                <defs>
-                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color: #4caf50; stop-opacity: 1" />
-                                        <stop offset="100%" style="stop-color: #81c784; stop-opacity: 1" />
-                                    </linearGradient>
-                                </defs>
-                                <circle class="background" cx="50" cy="50" r="45"></circle>
-                                <circle class="progress" cx="50" cy="50" r="45"></circle>
+                
+                    <div class="sensor-item">
+                        <!--             <h2>Temperature</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="temperature-value">0°C</span>
+                                <div class="label">Temperature</div>
+                            </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
                             </svg>
-                            <div class="value" id="moisture-value">0%</div>
                         </div>
+                        <div class="status" id="temperature-status"></div>
+                    </div>
+                
+                    <div class="sensor-item">
+                        <!--             <h2>Humidity</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="humidity-percentage">0%</span>
+                                <div class="label">Humidity</div>
+                            </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
+                            </svg>
+                        </div>
+                        <div class="status" id="humidity-status"></div>
+                    </div>
+                
+                    <div class="sensor-item">
+                        <!--             <h2>pH</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="ph-value">0</span>
+                                <div class="label">pH</div>
+                            </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
+                            </svg>
+                        </div>
+                        <div class="status" id="ph-status"></div>
                     </div>
                 </div>
             </div>
