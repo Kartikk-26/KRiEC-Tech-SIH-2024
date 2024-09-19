@@ -400,8 +400,7 @@ async function fetch__details() {
     }
     // ==== climate_condition_page --end ====
     if (Page === "soilMoisture") {
-        document.querySelector('#temp').innerText = `${Math.floor(espDataSnap.data().Temperature)}°C`;
-        document.querySelector('#moist').innerText = `${espDataSnap.data().Moisture}%`;
+        updateSensorValues(espDataSnap.data().Moisture, Math.floor(espDataSnap.data().Temperature), Math.floor(espDataSnap.data().Humidity), 7);
         fetch__details();
     }
 }

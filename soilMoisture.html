@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="./css/styles.css">
     <link type="text/css" rel="stylesheet" href="./css/soilMoisture.css">
-    <link type="text/css" rel="stylesheet" href="./css/controller.css"> <!-- New CSS file for controller -->
     <title>KriEC Tech 2024</title>
-    <style>
-        .d-none {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -21,8 +15,9 @@
             <!-- navbar -->
             <nav class="navbar navbar-dark bg-dark sticky-top">
                 <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
-                        aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                        aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a class="navbar-brand" href="./index.html">कृषि-Tech</a>
@@ -65,7 +60,7 @@
                                     <a class="nav-link" href="./aboutUs.html">About us</a>
                                 </li>
                                 <hr>
-            
+
                                 <li class="nav-item">
                                     <a class="nav-link login-form-call" aria-current="page">Sign In</a>
                                 </li>
@@ -92,80 +87,103 @@
 
         <div class="data-container">
             <div class="data-item">
-                <h2>Temperature</h2>
-                <div class="skill">
-                    <div class="outer">
-                        <div class="inner">
-                            <div id="temp">
-                                <!-- 22 &#8451; -->
+                <h2>Live Sensor readings</h2>
+                <div class="sensor-container">
+                    <div class="sensor-item">
+                        <!--             <h2>Moisture</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="moisture-percentage">0%</span>
+                                <div class="label">Moisture</div>
                             </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
+                            </svg>
                         </div>
+                        <!--             <div class="status" id="moisture-status"></div> -->
                     </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
-                        <defs>
-                            <linearGradient id="GradientColor">
-                                <stop offset="0%" stop-color="#DA22FF" />
-                                <stop offset="100%" stop-color="#9733EE" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="80" cy="80" r="70" stroke-linecap="round">
-                        </circle>
-                    </svg>
-                </div>
-
-                <h2>Soil Moisture</h2>
-                <div class="skill">
-                    <div class="outer">
-                        <div class="inner">
-                            <div id="moist">
-                                <!-- 65% -->
+                
+                    <div class="sensor-item">
+                        <!--             <h2>Temperature</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="temperature-value">0°C</span>
+                                <div class="label">Temperature</div>
                             </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
+                            </svg>
                         </div>
+                        <div class="status" id="temperature-status"></div>
                     </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
-                        <defs>
-                            <linearGradient id="GradientColor">
-                                <stop offset="0%" stop-color="#DA22FF" />
-                                <stop offset="100%" stop-color="#9733EE" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="80" cy="80" r="70" stroke-linecap="round">
-                        </circle>
-                    </svg>
+                
+                    <div class="sensor-item">
+                        <!--             <h2>Humidity</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="humidity-percentage">0%</span>
+                                <div class="label">Humidity</div>
+                            </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
+                            </svg>
+                        </div>
+                        <div class="status" id="humidity-status"></div>
+                    </div>
+                
+                    <div class="sensor-item">
+                        <!--             <h2>pH</h2> -->
+                        <div class="outer-circle">
+                            <div class="inner-circle">
+                                <span id="ph-value">0</span>
+                                <div class="label">pH</div>
+                            </div>
+                            <svg class="progress-ring" width="160" height="160">
+                                <circle class="progress-ring__circle" stroke="#00BFFF" r="70" cx="80" cy="80" />
+                            </svg>
+                        </div>
+                        <div class="status" id="ph-status"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="data-item">
                 <h2>Control Panel</h2>
                 <div class="controller">
-                    <h3>Controller</h3>
-                    <div class="toggle-group">
-                        <label for="mode-auto" class="toggle-label">Auto</label>
-                        <input type="radio" id="mode-auto" name="mode" value="auto">
-                        <label for="mode-manual" class="toggle-label">Manual</label>
-                        <input type="radio" id="mode-manual" name="mode" value="manual">
-                    </div>
+                    <div class="switch-group"></div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="toggle1" onclick="toggleSwitches()">
+                        <span class="slider1"></span>
+                    </label>
+                    <!-- <span class="toggle-label">Switch 1</span> -->
+                    <span class="switch-label" id="switch1-label">Off</span>
 
-                    <div id="manual-options" class="d-none">
-                        <h4>Water Supply</h4>
-                        <div class="toggle-group">
-                            <label for="water-on" class="toggle-label">ON</label>
-                            <input type="radio" id="water-on" name="water-supply" value="on">
-                            <label for="water-off" class="toggle-label">OFF</label>
-                            <input type="radio" id="water-off" name="water-supply" value="off">
+
+                    <!-- Switch 2 and Timers (Hidden initially) -->
+                    <div id="controls-section" style="display: none;">
+                        <!-- Switch 2 -->
+                        <div class="switch-group">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggle2" onclick="updateLabel(2)">
+                                <span class="slider2"></span>
+                            </label>
+                            <!-- <span class="toggle-label">Switch 2</span> -->
+                            <span class="switch-label" id="switch2-label">Off</span>
                         </div>
 
-                        <div id="schedule-section" class="d-none">
-                            <h4>Water Scheduling</h4>
-                            <input type="time" id="schedule-time" name="schedule-time">
-                            <button id="set-schedule" class="btn btn-primary mt-2">Set Schedule</button>
-                            <button id="stop-schedule" class="btn btn-danger mt-2 d-none">Stop Schedule</button>
-                            <div id="schedule-result" class="mt-2"></div>
+                        <!-- Scheduling Timers -->
+                        <div id="timers">
+                            <div class="timer-group">
+                                <label for="timer1">Timer 1 (Start Time):</label>
+                                <input type="time" id="timer1">
+                            </div>
+
+                            <div class="timer-group">
+                                <label for="timer2">Timer 2 (End Time):</label>
+                                <input type="time" id="timer2">
+                            </div>
                         </div>
                     </div>
-                    <div id="ai-output" class="d-none mt-2"></div>
                 </div>
             </div>
         </div>
@@ -214,7 +232,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script deter type="module" src="./js/firebaseAuth.js"></script>
-    <script defer type="module" src="./js/soilMoisture.js"></script>
+    <script src="./js/soilMoisture.js"></script>
 </body>
 
 </html>
