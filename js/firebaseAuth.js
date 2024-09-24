@@ -1,6 +1,6 @@
 //  -------- Firebase inbuilt functions --------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, addDoc, collection, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
@@ -247,6 +247,10 @@ const googleAuthentication = () => {
 };
 // ========================== Authentication --end ==========================
 
+
+
+
+
 // ========================== Forgot Password -- send reset_pass-email ==========================
 const forgotPassword = (email) => {
     auth
@@ -371,42 +375,100 @@ async function fetch__details() {
     const sanitizedEmail = trimmedEmail.replace(/[^\w\s]/gi, '');
     const docRef = doc(db, "users", sanitizedEmail);
     const espDataRef = doc(db, "users", sanitizedEmail, "espData", "DHT11");
-    const espDataSnap = await getDoc(espDataRef);
-    const docSnap = await getDoc(docRef);
 
-    // if (docSnap.exists()) {
-    //     console.log("Document data:", docSnap.data());
-    //     console.log("espData: ", espDataSnap.data());
-    //     console.log("Timestamp: ", new Date(docSnap.data().CropStage.Timestamp).toLocaleDateString());
-    // } else {
-    //     // docSnap.data() will be undefined in this case
-    //     console.log("No such document!");
-    // }
 
-    // ==== Edit-profile-page Display existing values ====
     if (Page === "deviceRegistration") {
+        await fetchDeviceRegistrationDetails(docRef);
+    } else if (Page === "climateCondition") {
+        await fetchClimateConditionDetails(docRef);
+    } else if (Page === "soilMoisture") {
+        await fetchSoilMoistureDetails(espDataRef);
+    }
+}
+async function fetchDeviceRegistrationDetails(docRef) {
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        // console.log("Document data:", docSnap.data());
+        // console.log("Timestamp: ", new Date(docSnap.data().CropStage.Timestamp).toLocaleDateString());
         // Display the data in the form -- Populate Form
         document.querySelector("#mac-id").value = docSnap.data().MacId;
         document.querySelector("#area").value = docSnap.data().Area;
         document.querySelector("#crop-stage").value = docSnap.data().CropStage;
         document.querySelector("#crop-type").value = docSnap.data().CropType;
         checkInput();
+    } else {
+        console.log("No such document!");
     }
-    // ==== Edit-profile-page Display existing values --end ====
-
-    // ==== climate_condition_page ====
-    if (Page === "climateCondition") {
+}
+async function fetchClimateConditionDetails(docRef) {
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
         getWeather(docSnap.data().Area);
+    } else {
+        console.log("No such document!");
     }
-    // ==== climate_condition_page --end ====
-    if (Page === "soilMoisture") {
-        updateSensorValues(espDataSnap.data().Moisture, Math.floor(espDataSnap.data().Temperature), Math.floor(espDataSnap.data().Humidity), 7);
-        fetch__details();
+}
+async function fetchSoilMoistureDetails(espDataRef) {
+    const espDataSnap = await getDoc(espDataRef);
+    if (espDataSnap.exists()) {
+        console.log("espData: ", espDataSnap.data());
+        updateSensorValues(
+            espDataSnap.data().Moisture,
+            Math.floor(espDataSnap.data().Temperature),
+            Math.floor(espDataSnap.data().Humidity),
+            7
+        );
+    } else {
+        console.log("No such document!");
     }
 }
 // !!IMPORTANT  --end  !!IMPORTANT
 
 
+// ========================== Additional User Details ==========================
+async function fetchAdditionalUserDetails() {
+    const trimmedEmail = email.trim();
+    const sanitizedEmail = trimmedEmail.replace(/[^\w\s]/gi, '');
+    const docRef = doc(db, "users", sanitizedEmail);
+
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        // Display the data in the form -- Populate Form
+        document.querySelector("#full-name").value = docSnap.data().FullName;
+        document.querySelector("#phone-number").value = docSnap.data().PhoneNumber;
+        document.querySelector("#address").value = docSnap.data().Address;
+    } else {
+        console.log("No such document!");
+    }
+}
+
+async function saveAdditionalUserDetails() {
+    const fullName = document.querySelector("#full-name").value;
+    const phoneNumber = document.querySelector("#phone-number").value;
+    const address = document.querySelector("#address").value;
+
+    if (fullName.trim() == "" || phoneNumber.trim() == "" || address.trim() == "") {
+        alert("All fields are required");
+    } else {
+        const trimmedEmail = email.trim();
+        const sanitizedEmail = trimmedEmail.replace(/[^\w\s]/gi, '');
+        const userDocRef = doc(db, "users", sanitizedEmail);
+
+        await updateDoc(userDocRef, {
+            FullName: fullName,
+            PhoneNumber: phoneNumber,
+            Address: address
+        }).then(() => {
+            console.log("Additional user details successfully saved!");
+            alert("Details saved successfully.");
+        }).catch((error) => {
+            console.error("Error saving additional user details: ", error);
+        });
+    }
+}
+// ========================== Additional User Details --end ==========================
 // ========================== Devicde rehistration form ==========================
 async function deviceRegistration() {
     const macId = document.querySelector("#mac-id").value;
@@ -424,7 +486,10 @@ async function deviceRegistration() {
         await setDoc(userDocRef, {
             MacId: macId,
             Area: area,
-            CropStage: { stage: cropStage, Timestamp: new Date().getTime() },
+            CropStage: {
+                stage: cropStage,
+                Timestamp: new Date().getTime()
+            },
             CropType: cropType
             // "08-23-2022", manually added date format: MM-DD-YYYY 
         }).then(() => {
