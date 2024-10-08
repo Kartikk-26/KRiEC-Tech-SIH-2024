@@ -41,7 +41,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--color-light);
     background: url('../img/bg-image.jpeg') no-repeat center center fixed;
-    backdrop-filter: brightness(55%);
+    backdrop-filter: brightness(70%);
     /* Add your backdrop filter properties here */
     /* Add your image URL */
     background-size: cover;
@@ -79,7 +79,8 @@ body {
 }
 
 .card:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: rgb(0, 22, 0, 0.6);
     transform: translateY(-8px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }

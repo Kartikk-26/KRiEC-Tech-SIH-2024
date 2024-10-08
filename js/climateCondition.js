@@ -1,15 +1,6 @@
-// const container = document.querySelector(".container1");
-// const weatherBox = document.querySelector(".weather-box");
-// const weatherDetails = document.querySelector(".weather-details");
-// const error404 = document.querySelector(".not-found");
-
 var rainfall;
 var forecastRain;
 var city;
-// function getWeather(cityName) {
-//     city = cityName;
-// }
-
 
 function getWeather(cityName) {
     var APIKey = "402fe03746dde66fe92a09674269957b";
