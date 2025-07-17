@@ -7,6 +7,18 @@ We proudly participated in the **Smart India Hackathon (SIH) 2024** under the **
 
 Our project, **KRiEC-Tech-SIH-2024**, is an innovative **smart irrigation system** designed to optimize water usage in agriculture. By integrating **IoT sensors, real-time weather data, and intelligent decision-making**, our system ensures precise and efficient irrigation, promoting sustainable farming. 🌿💧
 
+## 👥 Team
+
+**TEAM KRiEC-Tech** - SIH-2024 Submission
+
+### Team Members
+- Gaurav Sharma – Team Leader & Backend Developer
+- Vaishali Pujari – Research & Development, Data Preparation for AI Model
+- Anjali – Research & Development
+- Kartik Jain – Frontend Development & Project Deployment On Cloud
+- Medhavi – Frontend Developer, UI/UX
+- Shubham – Model Training & Deployment
+
 ### **🔑 Key Features**
 - ✅ **Intelligent Irrigation Management** – Determines the exact amount of water required based on real-time environmental factors.
 - ✅ **Real-Time Data Monitoring** – Tracks **soil moisture, humidity, and temperature** with IoT sensors.
